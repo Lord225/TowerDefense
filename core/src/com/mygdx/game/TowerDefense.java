@@ -20,6 +20,8 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
+		map = new Map();
+		batch = new SpriteBatch();
 	}
 
 
@@ -40,7 +42,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		batch.begin();
 
-		map.draw(batch);
+		//map.draw(batch);
 
 		batch.end();
 	}
