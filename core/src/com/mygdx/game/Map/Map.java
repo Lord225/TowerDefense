@@ -23,11 +23,25 @@ public class Map extends Sprite
         JsonReader json = new JsonReader();
         JsonValue base = json.parse(Gdx.files.internal("map_layout.json"));
 
-        var textures = Arrays.stream(base.get("texture").asStringArray()).map(Texture::new).toList();
+        this.tiles = new Tile[16][32];
 
+        var sprites = Arrays.stream(base.get("textures").asStringArray())
+                .map(path -> new Sprite(new Texture(Gdx.files.internal(path))))
+                .toArray(Sprite[]::new);
 
+        var map_layout = base.get("layout");
 
-        this.tiles = new Tile[32][16];
+        int i = 0;
+        for(var strips : map_layout)
+        {
+            int j = 0;
+            for(var tile_texture_index : strips.asIntArray())
+            {
+                this.tiles[i][j] = new Tile(sprites[tile_texture_index], i, j);
+                j += 1;
+            }
+            i += 1;
+        }
     }
 
     void update()
@@ -37,6 +51,12 @@ public class Map extends Sprite
 
     @Override
     public void draw(Batch batch) {
-        super.draw(batch);
+        for (int j = 0; j < 32; j++) {
+            for (int i = 0; i < 16; i++)
+            {
+                var tile = tiles[i][j];
+                tile.draw(batch);
+            }
+        }
     }
 }

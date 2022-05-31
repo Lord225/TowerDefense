@@ -7,19 +7,21 @@ import com.mygdx.game.Towers.Building;
 
 public class Tile extends Sprite
 {
-    Texture texture;
+    static float size = 32.0f;
+
     Building placed_building;
 
-    Tile(Texture texture)
+    public Tile(Sprite texture, float posX, float posY)
     {
-        this.texture = texture;
+        System.out.println(posX);
+        this.setPosition(posX*size, posY*size);
+        this.set(texture);
+        this.setOrigin(0,0);
     }
 
     @Override
     public void draw(Batch batch) {
         super.draw(batch);
-
-        // draw base texture (ground)
 
         if (placed_building != null)
         {

@@ -34,7 +34,7 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void render ()
 	{
-		ScreenUtils.clear(1, 0, 0, 1);
+		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
 
 
 		camera.update();
@@ -42,7 +42,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		batch.begin();
 
-		//map.draw(batch);
+		map.draw(batch);
 
 		batch.end();
 	}
