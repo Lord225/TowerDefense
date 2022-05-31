@@ -1,17 +1,20 @@
 package com.mygdx.game.Enemy;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public abstract class Enemy extends Sprite
 {
-    double health;
-    double speed;
+    float health;
+    float speed;
+    Sprite skin;
 
-    abstract void updateHealth(double damage);
+
+    abstract void updateHealth(float damage);
     abstract void move();
-    abstract double getHealth();
-    abstract void setHealth(double newHp);
-    abstract double getSpeed();
+    abstract float getHealth();
+    abstract void setHealth(float newHp);
+    abstract float getSpeed();
     abstract void setSpeed(int newVal);
 
 
