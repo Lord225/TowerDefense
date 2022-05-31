@@ -4,7 +4,10 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Map.Map;
+
+import java.util.Vector;
 
 public class TowerDefense extends ApplicationAdapter
 {

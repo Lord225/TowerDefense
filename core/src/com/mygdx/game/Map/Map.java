@@ -16,7 +16,8 @@ import java.util.stream.Collectors;
 public class Map extends Sprite
 {
     Tile[][] tiles;
-    Vector<Enemy> enemies = new Vector<>();
+
+    public Vector<Enemy> enemies = new Vector<>();
 
     public Map()
     {
@@ -44,9 +45,19 @@ public class Map extends Sprite
         }
     }
 
-    void update()
+    public Tile get_tile_by_cords(int x, int y)
     {
+        return tiles[x][y];
+    }
+    public Tile get_tile_by_screen_space(int screen_x, int screen_y)
+    {
+        //TODO;
+        return null;
+    }
 
+    public void update()
+    {
+        // Update route
     }
 
     @Override
@@ -59,4 +70,6 @@ public class Map extends Sprite
             }
         }
     }
+
+
 }
