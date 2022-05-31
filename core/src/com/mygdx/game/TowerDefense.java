@@ -9,26 +9,19 @@ import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.mygdx.game.Map.Map;
 
 public class TowerDefense extends ApplicationAdapter
 {
 	OrthographicCamera camera;
-	Rectangle test_rect;
-	PolygonSpriteBatch batch;
-	ShapeRenderer shapeRenderer;
-
+	SpriteBatch batch;
+	Map map;
 
 	@Override
 	public void create () {
 		camera = new OrthographicCamera();
-
-		test_rect =  new Rectangle().set(10, 10, 200, 200);
-
-		batch = new PolygonSpriteBatch();
-
-		shapeRenderer = new ShapeRenderer();
-
 	}
+
 
 	@Override
 	public void resize(int width, int height)
@@ -41,13 +34,15 @@ public class TowerDefense extends ApplicationAdapter
 	{
 		ScreenUtils.clear(1, 0, 0, 1);
 
-		camera.update();
 
-		shapeRenderer.setProjectionMatrix(camera.projection);
-		shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-		shapeRenderer.setColor(Color.BLACK);
-		shapeRenderer.rect(0, 0, 50, 50);
-		shapeRenderer.end();
+		camera.update();
+		batch.setProjectionMatrix(camera.projection);
+
+		batch.begin();
+
+		map.draw(batch);
+
+		batch.end();
 	}
 	
 	@Override
