@@ -39,7 +39,21 @@ public class TowerDefense extends ApplicationAdapter
 
 		map.draw(batch);
 
+		test_draw_towers();
+
+		test_draw_enemies();
+
 		batch.end();
+	}
+
+	void test_draw_towers()
+	{
+
+	}
+
+	void test_draw_enemies()
+	{
+
 	}
 	
 	@Override
