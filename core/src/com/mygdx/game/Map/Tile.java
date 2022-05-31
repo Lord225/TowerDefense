@@ -7,7 +7,7 @@ import com.mygdx.game.Towers.Building;
 
 public class Tile extends Sprite
 {
-    public static float TILE_SIZE = 32.0f;
+    public final static float TILE_SIZE = 32.0f;
 
     private final Vector2 position = new Vector2();
 
@@ -16,6 +16,9 @@ public class Tile extends Sprite
 
     public Vector2 getPosition() {
         return position;
+    }
+    public Vector2 getMiddlePosition() {
+        return position.add(TILE_SIZE/2, TILE_SIZE/2);
     }
     public boolean place(Building building_to_place)
     {
