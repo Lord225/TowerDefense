@@ -15,7 +15,4 @@ public abstract class Enemy extends Sprite
     abstract void setSpeed(int newVal);
 
 
-
-
-
 }
