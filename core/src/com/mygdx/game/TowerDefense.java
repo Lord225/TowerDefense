@@ -5,6 +5,8 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Map.Map;
@@ -26,7 +28,6 @@ public class TowerDefense extends ApplicationAdapter
 		map = new Map();
 		batch = new SpriteBatch();
 		ghost = new Ghost(100,100);
-	}
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		camera.setToOrtho(false, 32*32, 32*16);
