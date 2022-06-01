@@ -35,6 +35,9 @@ public class TowerDefense extends ApplicationAdapter
 	Vector2 blockPosition;
 	Building stoneTower;
 
+	float time = 0;
+
+
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
 		float blokX;
@@ -54,7 +57,7 @@ public class TowerDefense extends ApplicationAdapter
 		//mainTheme.setLooping(true);
 		//mainTheme.play();
 		camera = new OrthographicCamera();
-		map = new Map();
+		map = new Map("map_layout.json");
 		batch = new SpriteBatch();
 		ghost = new Ghost(100,100);
 		stoneTower = new StoneTower(100,100);
@@ -71,14 +74,25 @@ public class TowerDefense extends ApplicationAdapter
 	}
 	
 	@Override
-	public void render ()
+	public void render()
 	{
+		time += Gdx.graphics.getDeltaTime();
+
 		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
 
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 
 		handle_input();
+
+		System.out.println(time);
+		if(time > 3)
+		{
+			map.spawnEnemy();
+			time = 0;
+		}
+
+		map.update();
 
 		batch.begin();
 
@@ -109,17 +123,6 @@ public class TowerDefense extends ApplicationAdapter
 		}
 	}
 
-	void test_draw_towers(Batch batch, Vector2 placePosition)
-	{
-		if(placePosition.x!=-1 || placePosition.y!=-1)
-			stoneTower.draw(batch, placePosition);
-	}
-
-	void test_draw_enemies(Batch batch)
-	{
-		//ghost.draw(batch);
-	}
-	
 	@Override
 	public void dispose () {
 		font.dispose();

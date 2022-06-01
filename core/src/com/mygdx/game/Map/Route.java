@@ -27,6 +27,21 @@ public class Route
         route.add(new VectorWithLenght(x, y));
     }
 
+    public Vector2 get_end()
+    {
+        return route.lastElement();
+    }
+
+    public Vector2 get_start()
+    {
+        return route.firstElement();
+    }
+
+    public float get_route_size()
+    {
+        return get_end().distance;
+    }
+
     void update_enemy(Enemy enemy)
     {
         float progress = enemy.progress;
@@ -56,7 +71,6 @@ public class Route
             update_enemy(enemy);
 
             enemy.progress += enemy.getSpeed();
-
         }
     }
 }

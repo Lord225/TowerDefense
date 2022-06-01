@@ -21,19 +21,20 @@ public class Map extends Sprite
     public Route route;
     public Vector<Enemy> enemies = new Vector<>();
 
-    public Map()
+    public Map(String path)
     {
-        JsonReader json = new JsonReader();
-        JsonValue base = json.parse(Gdx.files.internal("map_layout.json"));
-
         this.tiles = new Tile[16][32];
+        this.route = new Route();
+
+        JsonReader json = new JsonReader();
+        JsonValue base = json.parse(Gdx.files.internal(path));
 
         var sprites = Arrays.stream(base.get("textures").asStringArray())
-                .map(path -> new Sprite(new Texture(Gdx.files.internal(path))))
+                .map(texture_path -> new Sprite(new Texture(Gdx.files.internal(texture_path))))
                 .toArray(Sprite[]::new);
 
         var map_layout = base.get("layout");
-
+        var route = base.get("route");
         var isPlacable = base.get("placable").asBooleanArray();
 
         int i = 0;
@@ -46,6 +47,13 @@ public class Map extends Sprite
                 j += 1;
             }
             i += 1;
+        }
+
+        for(var route_point : route)
+        {
+            var x = route_point.asFloatArray()[0];
+            var y = route_point.asFloatArray()[1];
+            this.route.add_point(x, y);
         }
     }
 
@@ -79,7 +87,7 @@ public class Map extends Sprite
 
     public void spawnEnemy()
     {
-        Enemy enemy = new Ghost(100, 100);
+        Enemy enemy = new Ghost(100, 0.5f);
 
         enemies.add(enemy);
     }
