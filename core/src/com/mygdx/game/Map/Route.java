@@ -9,10 +9,28 @@ public class Route
 {
     public Vector<Vector2> route = new Vector<>();
 
-
-
     void spawn_enemy(Enemy enemy)
     {
+        float progress =  enemy.progress;
+
+        // Oblicz pozycje na podtawie tablicy route - czyli  0 - początek, 1 - koniec
+
+        // Ustaw pozycje Enemy
+
+        // x
+        // |    o
+        // |    |
+        // --H--|
+        // jeżeli progrss = 0, zwórci pozycje x (początek trasy)
+        // jeżeli progrss = 1, zwróci pozycje o (koniec trasy)
+        // jeżeli progress = 0.5 zwóci pozycje dokładnie na środku trasy (H)
+
+        // [0,0] - [100, 0] - 100
+        // [100, 0] - [100, 100] - 100
+        // [100, 100] - [0, 0] - xxx
+        //
+        //
+
         // enemy spawing
         Vector2 test1 = new Vector2();
         Vector2 test2 = new Vector2();
@@ -23,8 +41,6 @@ public class Route
         test3.x = 0;test3.y=100;
 
         enemy.setPositionEnemy(test1);
-
-
     }
 
     void update_enemies()
