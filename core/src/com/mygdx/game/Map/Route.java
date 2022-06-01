@@ -25,6 +25,11 @@ public class Route
         // jeżeli progrss = 1, zwróci pozycje o (koniec trasy)
         // jeżeli progress = 0.5 zwóci pozycje dokładnie na środku trasy (H)
 
+        // [0,0] - [100, 0] - 100
+        // [100, 0] - [100, 100] - 100
+        // [100, 100] - [0, 0] - xxx
+        //
+        //
 
         // enemy spawing
         Vector2 test1 = new Vector2();
