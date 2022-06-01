@@ -12,10 +12,10 @@ public class StoneTower extends Building {
     public StoneTower(float range, float shootingCooldown){
         this.range = range;
         this.shootingCooldown = shootingCooldown;
-        this.skin = Resources.tower_sprite;
+        this.skin = Resources.getInstance().tower_sprite;
     }
     @Override
-    public void update_enemies(Vector<Enemy> enemies_in_range){};
+    public void update_enemies(Vector<Enemy> enemies_in_range){}
 
     public Enemy findClosestEnemy(Vector<Enemy> enemies_in_range) {
         float closestRange = Float.MAX_VALUE;
@@ -23,7 +23,7 @@ public class StoneTower extends Building {
         Enemy closestEnemy = null;
 
         for(Enemy enemy : enemies_in_range){
-            currentRange = (float) Point2D.distance((double)enemy.getX(),(double)enemy.getY(),(double)this.skin.getX(),(double)this.skin.getY());
+            currentRange = (float) Point2D.distance(enemy.getX(), enemy.getY(), this.skin.getX(), this.skin.getY());
             if(currentRange<=closestRange){
                 closestRange = currentRange;
                 closestEnemy = enemy;

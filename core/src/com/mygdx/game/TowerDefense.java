@@ -16,9 +16,7 @@ public class TowerDefense extends ApplicationAdapter
 	OrthographicCamera camera;
 	SpriteBatch batch;
 	Map map;
-
-
-	Enemy ghost = new Ghost(100,100);
+	Enemy ghost;
 
 
 	@Override
@@ -26,6 +24,7 @@ public class TowerDefense extends ApplicationAdapter
 		camera = new OrthographicCamera();
 		map = new Map();
 		batch = new SpriteBatch();
+		ghost = new Ghost(100,100);
 	}
 
 
