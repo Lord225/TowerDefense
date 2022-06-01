@@ -79,12 +79,10 @@ public class TowerDefense extends ApplicationAdapter
 	public void render()
 	{
 		time += Gdx.graphics.getDeltaTime();
-
 		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
 
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
-
 		handle_input();
 
 		if(time > 3)
@@ -96,7 +94,6 @@ public class TowerDefense extends ApplicationAdapter
 		map.update();
 
 		batch.begin();
-
 		map.draw(batch);
 
 		batch.end();
