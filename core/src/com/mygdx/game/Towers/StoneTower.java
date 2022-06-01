@@ -15,7 +15,10 @@ public class StoneTower extends Building {
         this.skin = Resources.getInstance().tower_sprite;
     }
     @Override
-    public void update_enemies(Vector<Enemy> enemies_in_range){}
+    public void update_enemies(Vector<Enemy> enemies_in_range)
+    {
+        System.out.println("Enemy Update!: " + enemies_in_range.size());
+    }
 
     public Enemy findClosestEnemy(Vector<Enemy> enemies_in_range) {
         float closestRange = Float.MAX_VALUE;

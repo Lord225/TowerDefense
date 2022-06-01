@@ -70,6 +70,7 @@ public class Map extends Sprite
     public void update()
     {
         route.update_enemies(enemies);
+        update_turrents();
     }
 
     @Override
@@ -94,6 +95,14 @@ public class Map extends Sprite
         Enemy enemy = new Ghost(100, 0.5f);
 
         enemies.add(enemy);
+    }
+
+    void update_turrents()
+    {
+        // Przejść przez wszstkie wiezyczki
+        // Znaleść dla każdej wieżyczki enemiy w zasięgu
+        // Wywołać dla każdej wiezyczki funkcje update_enemies (wcześniej)
+
     }
 
 }
