@@ -19,5 +19,4 @@ public class Resources
             _instance = new Resources();
         return _instance;
     }
-
 }

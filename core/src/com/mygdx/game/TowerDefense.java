@@ -17,6 +17,7 @@ import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Map.Map;
 import com.mygdx.game.Towers.Building;
+import com.mygdx.game.Towers.BuildingGenerator;
 import com.mygdx.game.Towers.StoneTower;
 
 import java.util.Vector;
@@ -35,6 +36,9 @@ public class TowerDefense extends ApplicationAdapter
 	BitmapFont font;
 	Vector2 blockPosition;
 	Building stoneTower;
+
+	float time = 0;
+
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -55,9 +59,8 @@ public class TowerDefense extends ApplicationAdapter
 		shootArrowS = Gdx.audio.newSound(Gdx.files.internal("sound_effects/shot.mp3"));
 		//mainTheme.setLooping(true);
 		//mainTheme.play();
-		blockPosition=new Vector2();
 		camera = new OrthographicCamera();
-		map = new Map();
+		map = new Map("map_layout.json");
 		batch = new SpriteBatch();
 		ghost = new Ghost(100,100);
 		stoneTower = new StoneTower(100,100);
@@ -74,39 +77,55 @@ public class TowerDefense extends ApplicationAdapter
 	}
 	
 	@Override
-	public void render ()
+	public void render()
 	{
-		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
+		time += Gdx.graphics.getDeltaTime();
 
+		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
 
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
+
+		handle_input();
+
+		System.out.println(time);
+		if(time > 3)
+		{
+			map.spawnEnemy();
+			time = 0;
+		}
+
+		map.update();
 
 		batch.begin();
 
 		map.draw(batch);
 
-		//test_draw_enemies(batch);
-
-		if(Gdx.input.isTouched()){
-			blockPosition=get_pointing_block();
-			font.draw(batch,blockPosition.toString(),200,200);
-		}
-		test_draw_towers(batch,blockPosition);
 		batch.end();
 	}
 
-	void test_draw_towers(Batch batch,Vector2 placePosition)
+	void place_building()
 	{
-		if(placePosition.x!=-1 || placePosition.y!=-1)
-			stoneTower.draw(batch,placePosition);
+		var blockPosition = get_pointing_block();
+
+		if(blockPosition.x < 0 || blockPosition.y < 0)
+			return;
+
+		var tile = map.get_tile_by_cords((int)blockPosition.y, (int)blockPosition.x);
+
+		var building = BuildingGenerator.get_stone_tower();
+
+		tile.place(building);
 	}
 
-	void test_draw_enemies(Batch batch)
+	void handle_input()
 	{
-		//ghost.draw(batch);
+		if(Gdx.input.isTouched())
+		{
+			place_building();
+		}
 	}
-	
+
 	@Override
 	public void dispose () {
 		font.dispose();

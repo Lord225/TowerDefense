@@ -15,25 +15,25 @@ public class Ghost extends Enemy
 
     }
     @Override
-    void updateHealth(float damage){
+    public void updateHealth(float damage){
         this.health -= getHealth();
     }
     @Override
-    void move(){}
+    public void move(){}
     @Override
-    float getHealth(){
+    public float getHealth(){
         return this.health;
     }
     @Override
-    void setHealth(float newHp){
+    public void setHealth(float newHp){
         this.health = newHp;
     }
     @Override
-    float getSpeed(){
+    public float getSpeed(){
         return this.speed;
     }
     @Override
-    void setSpeed(int newVal){
+    public void setSpeed(int newVal){
         this.speed = this.speed - newVal;
     }
 }

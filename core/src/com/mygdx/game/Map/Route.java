@@ -7,51 +7,70 @@ import java.util.Vector;
 
 public class Route
 {
-    public Vector<Vector2> route = new Vector<>();
-
-    void spawn_enemy(Enemy enemy)
+    static class VectorWithLenght extends Vector2
     {
-        float progress =  enemy.progress;
+        public static float total = 0.0f;
 
-        // Oblicz pozycje na podtawie tablicy route - czyli  0 - początek, 1 - koniec
+        public float distance;
 
-        // Ustaw pozycje Enemy
-
-        // x
-        // |    o
-        // |    |
-        // --H--|
-        // jeżeli progrss = 0, zwórci pozycje x (początek trasy)
-        // jeżeli progrss = 1, zwróci pozycje o (koniec trasy)
-        // jeżeli progress = 0.5 zwóci pozycje dokładnie na środku trasy (H)
-
-        // [0,0] - [100, 0] - 100
-        // [100, 0] - [100, 100] - 100
-        // [100, 100] - [0, 0] - xxx
-        //
-        //
-
-        for(int i=0;i<route.size();i++){
-
+        VectorWithLenght(float x, float y)
+        {
+            super(x, y);
+            total += len();
+            distance = total;
         }
+    }
+    public Vector<VectorWithLenght> route = new Vector<>();
 
-        // enemy spawing
-        /*
-        Vector2 test1 = new Vector2();
-        Vector2 test2 = new Vector2();
-        Vector2 test3 = new Vector2();
-
-        test1.x = 100;test1.y=100;
-        test2.x = 0;test2.y=0;
-        test3.x = 0;test3.y=100;
-
-        enemy.setPositionEnemy(test1);
-        */
+    void add_point(float x, float y)
+    {
+        route.add(new VectorWithLenght(x, y));
     }
 
-    void update_enemies()
+    public Vector2 get_end()
     {
-        // Update position of all enemies
-        // after that update towers ec - find distance and call update_enemies
+        return route.lastElement();
+    }
+
+    public Vector2 get_start()
+    {
+        return route.firstElement();
+    }
+
+    public float get_route_size()
+    {
+        return route.lastElement().distance;
+    }
+
+    void update_enemy(Enemy enemy)
+    {
+        float progress = enemy.progress;
+
+        for(int i = 0; i < route.size(); i++)
+        {
+            if(progress < route.elementAt(i).distance)
+            {
+                var pFrom = route.elementAt(i-1);
+                var pTo = route.elementAt(i);
+
+                var f = (progress - pFrom.distance) / (pTo.distance - pFrom.distance);
+                var x = pFrom.x + (pTo.x - pFrom.x) * f;
+                var y = pFrom.y + (pTo.y - pFrom.y) * f;
+
+                enemy.setPositionEnemy(new Vector2(x, y));
+
+                break;
+            }
+        }
+    }
+
+    void update_enemies(Vector<Enemy> enemies)
+    {
+        for(var enemy : enemies)
+        {
+            update_enemy(enemy);
+
+            enemy.progress += enemy.getSpeed();
+        }
     }
 }

@@ -10,6 +10,7 @@ import java.util.Vector;
 
 public abstract class Building extends Sprite
 {
+    float cost;
     Sprite skin;
     float range;
     float shootingCooldown;
@@ -21,11 +22,9 @@ public abstract class Building extends Sprite
     public abstract float getCooldown();
     public abstract void setCooldown(float cooldown);
 
+
     public void draw(Batch batch, Vector2 positionToPlace) {
-        // set origin to mid
-        // set postion
-        // draw.
-        skin.setPosition(positionToPlace.x*32.0F, positionToPlace.y*32.0F);
+        skin.setPosition(positionToPlace.x, positionToPlace.y);
         skin.draw(batch);
     }
 }
