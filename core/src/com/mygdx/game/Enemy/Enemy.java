@@ -1,5 +1,7 @@
 package com.mygdx.game.Enemy;
 
+import com.badlogic.gdx.graphics.Camera;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -20,16 +22,19 @@ public abstract class Enemy extends Sprite
     abstract void setHealth(float newHp);
     abstract float getSpeed();
     abstract void setSpeed(int newVal);
+    void setPositionEnemy(float x, float y){
+         this.position.x = x;
+         this.position.y = y;
+    }
 
     @Override
     public void draw(Batch batch) {
         // set origin to mid
         // set postion
         // draw.
-        super.draw(batch);
-        this.position.set(100,100);
-        skin.draw(batch);
 
+        skin.setPosition(this.position.x, this.position.y);
+        skin.draw(batch);
 
 
     }
