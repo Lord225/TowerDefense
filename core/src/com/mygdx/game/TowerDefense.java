@@ -1,10 +1,12 @@
 package com.mygdx.game;
 
+import Miscellaneous.Resources;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Enemy.Enemy;
+import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Map.Map;
 
 import java.util.Vector;
@@ -14,6 +16,10 @@ public class TowerDefense extends ApplicationAdapter
 	OrthographicCamera camera;
 	SpriteBatch batch;
 	Map map;
+
+
+	Enemy ghost = new Ghost(100,100);
+
 
 	@Override
 	public void create () {
@@ -44,7 +50,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		test_draw_towers();
 
-		test_draw_enemies();
+		//test_draw_enemies(batch);
 
 		batch.end();
 	}
@@ -54,9 +60,9 @@ public class TowerDefense extends ApplicationAdapter
 
 	}
 
-	void test_draw_enemies()
+	void test_draw_enemies(Batch batch)
 	{
-
+		//ghost.draw(batch);
 	}
 	
 	@Override

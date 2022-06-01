@@ -9,9 +9,9 @@ public abstract class Enemy extends Sprite
 {
     public Vector2 position = new Vector2();
 
-    float health;
-    float speed;
-    Sprite skin;
+    public float health;
+    public float speed;
+    public Sprite skin;
 
 
     abstract void updateHealth(float damage);
@@ -27,6 +27,10 @@ public abstract class Enemy extends Sprite
         // set postion
         // draw.
         super.draw(batch);
+        this.position.set(100,100);
+        skin.draw(batch);
+
+
 
     }
 }
