@@ -103,6 +103,7 @@ public class Map extends Sprite
         // Znaleść dla każdej wieżyczki enemiy w zasięgu
         // Wywołać dla każdej wiezyczki funkcje update_enemies (wcześniej)
 
+
     }
 
 }

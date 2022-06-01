@@ -1,5 +1,6 @@
 package com.mygdx.game.Map;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Enemy.Enemy;
 
@@ -10,14 +11,18 @@ public class Route
     static class VectorWithLenght extends Vector2
     {
         public static float total = 0.0f;
+        public static float last_x = 0;
+        public static float last_y = 0;
 
         public float distance;
 
         VectorWithLenght(float x, float y)
         {
             super(x, y);
-            total += len();
+            total += Math.sqrt((x-last_x)*(x-last_x) + (y-last_y)*(y-last_y));
             distance = total;
+            last_x = x;
+            last_y = y;
         }
     }
 
