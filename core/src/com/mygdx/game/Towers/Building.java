@@ -12,11 +12,9 @@ public abstract class Building extends Sprite
     float range;
     float shootingCooldown;
 
-
     public abstract void update_enemies(Vector<Enemy> enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
     public abstract float getRange(); // range wiezyczki
     public abstract void setRange(float range);
     public abstract float getCooldown();
     public abstract void setCooldown(float cooldown);
-
 }

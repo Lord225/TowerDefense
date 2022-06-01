@@ -5,15 +5,20 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Map.Map;
+import com.mygdx.game.Map.Tile;
 
 import java.util.Vector;
 
 public class TowerDefense extends ApplicationAdapter
 {
 	OrthographicCamera camera;
+	Viewport gamePort;
 	SpriteBatch batch;
 	Map map;
 	Enemy ghost;
@@ -25,13 +30,15 @@ public class TowerDefense extends ApplicationAdapter
 		map = new Map();
 		batch = new SpriteBatch();
 		ghost = new Ghost(100,100);
-	}
 
+		gamePort = new ExtendViewport(32*32 , 32*16, camera);
+		camera.setToOrtho(false, 32*32, 32*16);
+	}
 
 	@Override
 	public void resize(int width, int height)
 	{
-		camera.setToOrtho(false,  width, height);
+		gamePort.update(width, height);
 	}
 	
 	@Override
@@ -41,7 +48,7 @@ public class TowerDefense extends ApplicationAdapter
 
 
 		camera.update();
-		batch.setProjectionMatrix(camera.projection);
+		batch.setProjectionMatrix(camera.combined);
 
 		batch.begin();
 
@@ -49,7 +56,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		test_draw_towers();
 
-		//test_draw_enemies(batch);
+		test_draw_enemies(batch);
 
 		batch.end();
 	}

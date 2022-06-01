@@ -49,6 +49,7 @@ public class Map extends Sprite
     {
         return tiles[x][y];
     }
+
     public Tile get_tile_by_screen_space(int screen_x, int screen_y)
     {
         //TODO;
@@ -61,7 +62,8 @@ public class Map extends Sprite
     }
 
     @Override
-    public void draw(Batch batch) {
+    public void draw(Batch batch)
+    {
         for (int j = 0; j < 32; j++) {
             for (int i = 0; i < 16; i++)
             {

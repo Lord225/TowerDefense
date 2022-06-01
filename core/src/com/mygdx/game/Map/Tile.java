@@ -8,8 +8,10 @@ import com.mygdx.game.Towers.Building;
 public class Tile extends Sprite
 {
     public final static float TILE_SIZE = 32.0f;
+    public final static Vector2 OFFSET = new Vector2();
 
     private final Vector2 position = new Vector2();
+
 
     private Building placed_building;
 
@@ -37,13 +39,13 @@ public class Tile extends Sprite
 
     public Tile(Sprite texture, float posX, float posY)
     {
-        position.set(posY* TILE_SIZE, posX* TILE_SIZE);
+        position.set(posY * TILE_SIZE, posX * TILE_SIZE);
         this.set(texture);
     }
 
     @Override
     public void draw(Batch batch) {
-        this.setPosition(position.x, position.y);
+        this.setPosition(position.x + OFFSET.x, position.y + OFFSET.y);
         super.draw(batch);
 
         if (placed_building != null)
