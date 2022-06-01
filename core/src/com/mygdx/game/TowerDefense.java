@@ -16,6 +16,7 @@ import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Map.Map;
 import com.mygdx.game.Towers.Building;
+import com.mygdx.game.Towers.BuildingGenerator;
 import com.mygdx.game.Towers.StoneTower;
 
 import java.util.Vector;
@@ -52,7 +53,6 @@ public class TowerDefense extends ApplicationAdapter
 		mainTheme = Gdx.audio.newMusic(Gdx.files.internal("music/day.mp3"));
 		//mainTheme.setLooping(true);
 		//mainTheme.play();
-		blockPosition=new Vector2();
 		camera = new OrthographicCamera();
 		map = new Map();
 		batch = new SpriteBatch();
@@ -75,28 +75,44 @@ public class TowerDefense extends ApplicationAdapter
 	{
 		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
 
-
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
+
+		handle_input();
 
 		batch.begin();
 
 		map.draw(batch);
 
-		//test_draw_enemies(batch);
-
-		if(Gdx.input.isTouched()){
-			blockPosition=get_pointing_block();
-			font.draw(batch,blockPosition.toString(),200,200);
-		}
-		test_draw_towers(batch,blockPosition);
 		batch.end();
 	}
 
-	void test_draw_towers(Batch batch,Vector2 placePosition)
+	void place_building()
+	{
+		var blockPosition = get_pointing_block();
+
+		if(blockPosition.x < 0 || blockPosition.y < 0)
+			return;
+
+		var tile = map.get_tile_by_cords((int)blockPosition.y, (int)blockPosition.x);
+
+		var building = BuildingGenerator.get_stone_tower();
+
+		tile.place(building);
+	}
+
+	void handle_input()
+	{
+		if(Gdx.input.isTouched())
+		{
+			place_building();
+		}
+	}
+
+	void test_draw_towers(Batch batch, Vector2 placePosition)
 	{
 		if(placePosition.x!=-1 || placePosition.y!=-1)
-			stoneTower.draw(batch,placePosition);
+			stoneTower.draw(batch, placePosition);
 	}
 
 	void test_draw_enemies(Batch batch)

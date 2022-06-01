@@ -42,7 +42,7 @@ public class Map extends Sprite
             int j = 0;
             for(var tile_texture_index : strips.asIntArray())
             {
-                this.tiles[i][j] = new Tile(sprites[tile_texture_index], i, j);
+                this.tiles[i][j] = new Tile(sprites[tile_texture_index], i, j, isPlacable[tile_texture_index]);
                 j += 1;
             }
             i += 1;
