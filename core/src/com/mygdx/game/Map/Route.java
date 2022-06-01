@@ -31,7 +31,12 @@ public class Route
         //
         //
 
+        for(int i=0;i<route.size();i++){
+
+        }
+
         // enemy spawing
+        /*
         Vector2 test1 = new Vector2();
         Vector2 test2 = new Vector2();
         Vector2 test3 = new Vector2();
@@ -41,6 +46,7 @@ public class Route
         test3.x = 0;test3.y=100;
 
         enemy.setPositionEnemy(test1);
+        */
     }
 
     void update_enemies()

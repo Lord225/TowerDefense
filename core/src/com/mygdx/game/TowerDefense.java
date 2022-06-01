@@ -4,6 +4,7 @@ import Miscellaneous.Resources;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
@@ -27,6 +28,7 @@ public class TowerDefense extends ApplicationAdapter
 	Viewport gamePort;
 	SpriteBatch batch;
 	Map map;
+	Music mainTheme;
 	Enemy ghost;
 	BitmapFont font;
 	Vector2 blockPosition;
@@ -47,6 +49,9 @@ public class TowerDefense extends ApplicationAdapter
 	}
 	@Override
 	public void create () {
+		mainTheme = Gdx.audio.newMusic(Gdx.files.internal("music/day.mp3"));
+		//mainTheme.setLooping(true);
+		//mainTheme.play();
 		blockPosition=new Vector2();
 		camera = new OrthographicCamera();
 		map = new Map();
