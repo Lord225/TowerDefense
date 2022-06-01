@@ -49,13 +49,7 @@ public class Map extends Sprite
     {
         return tiles[x][y];
     }
-
-    public Tile get_tile_by_screen_space(int screen_x, int screen_y)
-    {
-        //TODO;
-        return null;
-    }
-
+    
     public void update()
     {
         route.update_enemies();

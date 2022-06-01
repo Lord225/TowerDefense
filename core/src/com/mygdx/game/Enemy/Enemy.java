@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class Enemy extends Sprite
 {
     public Vector2 position = new Vector2();
+    public float progress = 0.0f;
 
     public float health;
     public float speed;
