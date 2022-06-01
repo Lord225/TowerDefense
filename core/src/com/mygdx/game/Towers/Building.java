@@ -10,6 +10,7 @@ import java.util.Vector;
 
 public abstract class Building extends Sprite
 {
+    float cost;
     Sprite skin;
     float range;
     float shootingCooldown;
