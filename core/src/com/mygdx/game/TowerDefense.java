@@ -129,5 +129,7 @@ public class TowerDefense extends ApplicationAdapter
 		font.dispose();
 		mainTheme.dispose();
 		shootArrowS.dispose();
+		arrowHitS.dispose();
+		deathS.dispose();
 	}
 }
