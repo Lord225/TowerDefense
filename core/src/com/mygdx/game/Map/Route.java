@@ -9,9 +9,13 @@ public class Route
 {
     public Vector<Vector2> route = new Vector<>();
 
+
+
     void spawn_enemy(Enemy enemy)
     {
         // enemy spawing
+        rout
+
     }
 
     void update_enemies()

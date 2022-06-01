@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class Map extends Sprite
 {
     Tile[][] tiles;
-
+    public Route route;
     public Vector<Enemy> enemies = new Vector<>();
 
     public Map()
@@ -57,7 +57,7 @@ public class Map extends Sprite
 
     public void update()
     {
-        // Update route
+        route.update_enemies();
     }
 
     @Override
@@ -71,5 +71,10 @@ public class Map extends Sprite
         }
     }
 
+    public void spawnEnemy(Batch batch){
+        for(Enemy x: enemies){
+            x.draw(batch);
+        }
+    }
 
 }

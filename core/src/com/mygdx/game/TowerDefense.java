@@ -24,7 +24,6 @@ public class TowerDefense extends ApplicationAdapter
 		camera = new OrthographicCamera();
 		map = new Map();
 		batch = new SpriteBatch();
-		ghost = new Ghost(100,100);
 	}
 
 
@@ -49,7 +48,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		test_draw_towers();
 
-		//test_draw_enemies(batch);
+		test_draw_enemies(batch);
 
 		batch.end();
 	}
@@ -61,7 +60,7 @@ public class TowerDefense extends ApplicationAdapter
 
 	void test_draw_enemies(Batch batch)
 	{
-		//ghost.draw(batch);
+		ghost.draw(batch);
 	}
 	
 	@Override
