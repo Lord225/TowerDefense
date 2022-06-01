@@ -4,16 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Vector;
-import java.util.stream.Collectors;
 
 public class Map extends Sprite
 {
@@ -34,7 +31,7 @@ public class Map extends Sprite
                 .toArray(Sprite[]::new);
 
         var map_layout = base.get("layout");
-        var route = base.get("route");
+        var jsonroute = base.get("route");
         var isPlacable = base.get("placable").asBooleanArray();
 
         int i = 0;
@@ -49,12 +46,19 @@ public class Map extends Sprite
             i += 1;
         }
 
-        for(var route_point : route)
+        for(var route_point : jsonroute)
         {
             var x = route_point.asFloatArray()[0];
             var y = route_point.asFloatArray()[1];
             this.route.add_point(x, y);
         }
+        this.route.set_on_arrival_callback(new Route.Callback() {
+
+            @Override
+            public void arrival_event(Enemy enemy) {
+                System.out.println("Enemy hitted target");
+            }
+        });
     }
 
 

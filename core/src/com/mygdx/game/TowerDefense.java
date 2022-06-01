@@ -3,7 +3,6 @@ package com.mygdx.game;
 import Miscellaneous.Resources;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.assets.loaders.BitmapFontLoader;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -20,7 +19,6 @@ import com.mygdx.game.Towers.Building;
 import com.mygdx.game.Towers.BuildingGenerator;
 import com.mygdx.game.Towers.StoneTower;
 
-import java.util.Vector;
 
 import static com.badlogic.gdx.math.MathUtils.floor;
 
@@ -34,7 +32,6 @@ public class TowerDefense extends ApplicationAdapter
 	Sound shootArrowS, arrowHitS, deathS ;
 	Enemy ghost;
 	BitmapFont font;
-	Vector2 blockPosition;
 	Building stoneTower;
 
 	float time = 0;
@@ -90,7 +87,6 @@ public class TowerDefense extends ApplicationAdapter
 
 		handle_input();
 
-		System.out.println(time);
 		if(time > 3)
 		{
 			map.spawnEnemy();

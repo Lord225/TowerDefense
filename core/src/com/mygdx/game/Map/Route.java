@@ -20,6 +20,13 @@ public class Route
             distance = total;
         }
     }
+
+    static abstract class Callback
+    {
+        public abstract void arrival_event(Enemy enemy);
+    }
+
+    public Vector<Callback> callbacks = new Vector<>();
     public Vector<VectorWithLenght> route = new Vector<>();
 
     void add_point(float x, float y)
@@ -37,12 +44,12 @@ public class Route
         return route.firstElement();
     }
 
-    public float get_route_size()
+    public float get_route_lenght()
     {
         return route.lastElement().distance;
     }
 
-    void update_enemy(Enemy enemy)
+    public void update_enemy(Enemy enemy)
     {
         float progress = enemy.progress;
 
@@ -64,7 +71,7 @@ public class Route
         }
     }
 
-    void update_enemies(Vector<Enemy> enemies)
+    public void update_enemies(Vector<Enemy> enemies)
     {
         for(var enemy : enemies)
         {
@@ -72,5 +79,27 @@ public class Route
 
             enemy.progress += enemy.getSpeed();
         }
+
+        enemies.removeIf(x -> {
+            if(x.progress > this.get_route_lenght())
+            {
+                enemie_arrived(x);
+                return true;
+            }
+            return false;
+        });
+    }
+
+    void enemie_arrived(Enemy enemy)
+    {
+        for(var callback : callbacks)
+        {
+            callback.arrival_event(enemy);
+        }
+    }
+
+    public void set_on_arrival_callback(Callback callback)
+    {
+        callbacks.add(callback);
     }
 }
