@@ -45,6 +45,7 @@ public class Map extends Sprite
         }
     }
 
+
     public Tile get_tile_by_cords(int x, int y)
     {
         return tiles[x][y];
@@ -78,5 +79,4 @@ public class Map extends Sprite
             x.draw(batch);
         }
     }
-
 }
