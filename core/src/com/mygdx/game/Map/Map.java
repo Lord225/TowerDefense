@@ -8,7 +8,9 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
+import com.mygdx.game.Towers.Building;
 
+import java.awt.geom.Point2D;
 import java.util.Arrays;
 import java.util.Vector;
 
@@ -97,11 +99,31 @@ public class Map extends Sprite
         enemies.add(enemy);
     }
 
+    public float distance(Enemy enemy, Building currentTurret){
+        float currentRange = 0.0F;
+        currentRange = (float) Point2D.distance(enemy.position.x,enemy.position.y, currentTurret.getPositionBuilding().x, currentTurret.getPositionBuilding().y);
+        System.out.println(currentRange);
+        return currentRange;
+    }
+
     void update_turrents()
     {
-        // Przejść przez wszstkie wiezyczki
+        // Przejść przez wszstkie wiezyczki (x)
         // Znaleść dla każdej wieżyczki enemiy w zasięgu
-        // Wywołać dla każdej wiezyczki funkcje update_enemies (wcześniej)
+        // Wywołać dla każdej wiezyczki funkcje update_enemies (wcześniej) (x)
+        //Building currentTurret = null;
+        for (int j = 0; j < 32; j++) {
+            for (int i = 0; i < 16; i++)
+            {
+                var tile = tiles[i][j];
+                if(tile.get_building()!=null){
+                    Building currentTurret = tile.get_building();
+                    var currentEnemies = enemies.stream().filter(enemy -> distance(enemy,currentTurret) < currentTurret.getRange()).toArray(Enemy[]::new);
+                    currentTurret.update_enemies(currentEnemies);
+                }
+            }
+        }
+
 
     }
 
