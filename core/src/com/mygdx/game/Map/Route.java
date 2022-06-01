@@ -14,7 +14,16 @@ public class Route
     void spawn_enemy(Enemy enemy)
     {
         // enemy spawing
-        rout
+        Vector2 test1 = new Vector2();
+        Vector2 test2 = new Vector2();
+        Vector2 test3 = new Vector2();
+
+        test1.x = 100;test1.y=100;
+        test2.x = 0;test2.y=0;
+        test3.x = 0;test3.y=100;
+
+        enemy.setPositionEnemy(test1);
+
 
     }
 

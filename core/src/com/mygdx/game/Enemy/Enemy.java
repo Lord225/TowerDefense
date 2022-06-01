@@ -22,9 +22,8 @@ public abstract class Enemy extends Sprite
     abstract void setHealth(float newHp);
     abstract float getSpeed();
     abstract void setSpeed(int newVal);
-    void setPositionEnemy(float x, float y){
-         this.position.x = x;
-         this.position.y = y;
+    public void setPositionEnemy(Vector2 position){
+        this.position = position;
     }
 
     @Override
