@@ -39,7 +39,7 @@ public class Route
 
     public float get_route_size()
     {
-        return get_end().distance;
+        return route.lastElement().distance;
     }
 
     void update_enemy(Enemy enemy)
