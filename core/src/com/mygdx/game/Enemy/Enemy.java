@@ -17,12 +17,12 @@ public abstract class Enemy extends Sprite
     public Sprite skin;
 
 
-    abstract void updateHealth(float damage);
-    abstract void move();
-    abstract float getHealth();
-    abstract void setHealth(float newHp);
-    abstract float getSpeed();
-    abstract void setSpeed(int newVal);
+    abstract public void updateHealth(float damage);
+    abstract public void move();
+    abstract public float getHealth();
+    abstract public void setHealth(float newHp);
+    abstract public float getSpeed();
+    abstract public void setSpeed(int newVal);
     public void setPositionEnemy(Vector2 position){
         this.position = position;
     }

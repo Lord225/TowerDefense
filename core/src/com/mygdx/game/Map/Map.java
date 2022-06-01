@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Enemy.Enemy;
+import com.mygdx.game.Enemy.Ghost;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,6 +34,8 @@ public class Map extends Sprite
 
         var map_layout = base.get("layout");
 
+        var isPlacable = base.get("placable").asBooleanArray();
+
         int i = 0;
         for(var strips : map_layout)
         {
@@ -53,7 +57,7 @@ public class Map extends Sprite
     
     public void update()
     {
-        route.update_enemies();
+        route.update_enemies(enemies);
     }
 
     @Override
@@ -66,11 +70,18 @@ public class Map extends Sprite
                 tile.draw(batch);
             }
         }
-    }
 
-    public void spawnEnemy(Batch batch){
+        // Draw enemies
         for(Enemy x: enemies){
             x.draw(batch);
         }
     }
+
+    public void spawnEnemy()
+    {
+        Enemy enemy = new Ghost(100, 100);
+
+        enemies.add(enemy);
+    }
+
 }
