@@ -31,7 +31,7 @@ public class TowerDefense extends ApplicationAdapter
 	SpriteBatch batch;
 	Map map;
 	Music mainTheme;
-	Sound shootArrowS;
+	Sound shootArrowS, arrowHitS, deathS ;
 	Enemy ghost;
 	BitmapFont font;
 	Vector2 blockPosition;
@@ -55,8 +55,10 @@ public class TowerDefense extends ApplicationAdapter
 	}
 	@Override
 	public void create () {
-		mainTheme = Gdx.audio.newMusic(Gdx.files.internal("music/day.mp3"));
-		shootArrowS = Gdx.audio.newSound(Gdx.files.internal("sound_effects/shot.mp3"));
+		mainTheme = Resources.getInstance().main_theme;
+		shootArrowS = Resources.getInstance().shoot_arrow;
+		arrowHitS = Resources.getInstance().arrow_hit_sound;
+		deathS = Resources.getInstance().death_sound;
 		//mainTheme.setLooping(true);
 		//mainTheme.play();
 		camera = new OrthographicCamera();
