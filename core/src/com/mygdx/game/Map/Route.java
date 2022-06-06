@@ -57,7 +57,7 @@ public class Route
 
     public void update_enemy(Enemy enemy)
     {
-        float progress = enemy.progress;
+        float progress = enemy.getProgress();
 
         for(int i = 0; i < route.size(); i++)
         {
@@ -82,13 +82,13 @@ public class Route
         {
             if(entity instanceof Enemy enemy) {
                 update_enemy(enemy);
-                enemy.progress += enemy.getSpeed();
+                enemy.setProgress(enemy.getProgress() + enemy.getSpeed());
             }
         }
 
         entities.removeIf(entity -> {
             if(entity instanceof Enemy enemy) {
-                if (enemy.progress > this.get_route_lenght()) {
+                if (enemy.getProgress() > this.get_route_lenght()) {
                     enemie_arrived(enemy);
                     return true;
                 }

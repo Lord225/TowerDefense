@@ -31,6 +31,8 @@ public class Tile extends Sprite
 
         placed_building = building_to_place;
 
+        placed_building.position.set(this.position);
+
         return true;
     }
 
@@ -54,7 +56,7 @@ public class Tile extends Sprite
 
         if (placed_building != null)
         {
-            placed_building.draw(batch, position);
+            placed_building.draw(batch);
         }
     }
 }

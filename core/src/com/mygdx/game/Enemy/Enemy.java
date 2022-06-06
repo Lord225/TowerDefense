@@ -10,19 +10,26 @@ import com.badlogic.gdx.math.Vector2;
 public abstract class Enemy extends Entity
 {
     //public Vector2 position = new Vector2();
-    public float progress = 0.0f;
+    float progress = 0.0f;
 
-    public float health;
-    public float speed;
+    float health;
+    float speed;
     //public Sprite skin;
 
 
     abstract public void updateHealth(float damage);
-    abstract public void move();
     abstract public float getHealth();
     abstract public void setHealth(float newHp);
     abstract public float getSpeed();
     abstract public void setSpeed(int newVal);
+
+    public float getProgress() {
+        return progress;
+    }
+
+    public void setProgress(float progress) {
+        this.progress = progress;
+    }
     /*
     public void setPositionEnemy(Vector2 position){
         this.position = position;

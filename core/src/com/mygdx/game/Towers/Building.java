@@ -1,5 +1,6 @@
 package com.mygdx.game.Towers;
 
+import Miscellaneous.Resources;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -21,6 +22,7 @@ public abstract class Building extends Entity
     float shootingCooldown;
     //Vector2 position = new Vector2();
     ShapeRenderer shapeRenderer = new ShapeRenderer();
+    Sprite skin = Resources.getInstance().tower_sprite;
 
     public abstract void update_enemies(Entity[] enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
     public abstract float getRange(); // range wiezyczki
@@ -30,17 +32,9 @@ public abstract class Building extends Entity
 
 
 
-
-    public void draw(Batch batch,  Vector2 positionToPlace) {
-        batch.end();//Trzeba wyłączyć by Shaperendered działał
-        shapeRenderer.setProjectionMatrix(batch.getProjectionMatrix());
-        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(Color.RED);
-        shapeRenderer.circle(positionToPlace.x,positionToPlace.y,100);
-        shapeRenderer.end();
-        batch.begin();//Włączamy spowrotem
-
-        skin.setPosition(positionToPlace.x, positionToPlace.y);
+    @Override
+    public void draw(Batch batch) {
+        skin.setPosition(position.x, position.y);
         skin.draw(batch);
     }
     public Enemy findClosestEnemy(Vector<Enemy> enemies_in_range) {
