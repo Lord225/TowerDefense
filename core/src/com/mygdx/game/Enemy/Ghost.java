@@ -19,8 +19,6 @@ public class Ghost extends Enemy
         this.health -= getHealth();
     }
     @Override
-    public void move(){}
-    @Override
     public float getHealth(){
         return this.health;
     }
