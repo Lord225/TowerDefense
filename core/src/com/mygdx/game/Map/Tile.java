@@ -31,8 +31,8 @@ public class Tile extends Sprite
 
         placed_building = building_to_place;
 
-        placed_building.position.set(this.position);
-
+        //placed_building.position.set(this.position);
+        placed_building.setPositionEntity(this.position);
         return true;
     }
 
