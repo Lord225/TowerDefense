@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Enemy.Enemy;
+import com.mygdx.game.Enemy.Entity;
 
 import java.awt.geom.Point2D;
 import java.util.Vector;
@@ -21,7 +22,7 @@ public abstract class Building extends Sprite
     Vector2 position = new Vector2();
     ShapeRenderer shapeRenderer = new ShapeRenderer();
 
-    public abstract void update_enemies(Enemy[] enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
+    public abstract void update_enemies(Entity[] enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
     public abstract float getRange(); // range wiezyczki
     public abstract void setRange(float range);
     public abstract float getCooldown();

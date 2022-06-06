@@ -3,6 +3,7 @@ package com.mygdx.game.Map;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Enemy.Enemy;
+import com.mygdx.game.Enemy.Entity;
 
 import java.util.Vector;
 
@@ -28,7 +29,7 @@ public class Route
 
     static abstract class Callback
     {
-        public abstract void arrival_event(Enemy enemy);
+        public abstract void arrival_event(Entity enemy);
     }
 
     public Vector<Callback> callbacks = new Vector<>();
@@ -69,27 +70,28 @@ public class Route
                 var x = pFrom.x + (pTo.x - pFrom.x) * f;
                 var y = pFrom.y + (pTo.y - pFrom.y) * f;
 
-                enemy.setPositionEnemy(new Vector2(x, y));
-
+                enemy.setPositionEntity(new Vector2(x, y));
                 break;
             }
         }
     }
 
-    public void update_enemies(Vector<Enemy> enemies)
+    public void update_entities(Vector<Entity> entities)
     {
-        for(var enemy : enemies)
+        for(var entity : entities)
         {
-            update_enemy(enemy);
-
-            enemy.progress += enemy.getSpeed();
+            if(entity instanceof Enemy enemy) {
+                update_enemy(enemy);
+                enemy.progress += enemy.getSpeed();
+            }
         }
 
-        enemies.removeIf(x -> {
-            if(x.progress > this.get_route_lenght())
-            {
-                enemie_arrived(x);
-                return true;
+        entities.removeIf(entity -> {
+            if(entity instanceof Enemy enemy) {
+                if (enemy.progress > this.get_route_lenght()) {
+                    enemie_arrived(enemy);
+                    return true;
+                }
             }
             return false;
         });

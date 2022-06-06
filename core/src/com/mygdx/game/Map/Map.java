@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Enemy.Enemy;
+import com.mygdx.game.Enemy.Entity;
 import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Towers.Building;
 
@@ -18,7 +19,7 @@ public class Map extends Sprite
 {
     Tile[][] tiles;
     public Route route;
-    public Vector<Enemy> enemies = new Vector<>();
+    public Vector<Entity> enemies = new Vector<>();
 
     public Map(String path)
     {
@@ -57,7 +58,7 @@ public class Map extends Sprite
         this.route.set_on_arrival_callback(new Route.Callback() {
 
             @Override
-            public void arrival_event(Enemy enemy) {
+            public void arrival_event(Entity enemy) {
                 System.out.println("Enemy hitted target");
             }
         });
@@ -71,7 +72,7 @@ public class Map extends Sprite
     
     public void update()
     {
-        route.update_enemies(enemies);
+        route.update_entities(enemies);
         update_turrents();
     }
 
@@ -87,7 +88,7 @@ public class Map extends Sprite
         }
 
         // Draw enemies
-        for(Enemy x: enemies){
+        for(Entity x: enemies){
             x.draw(batch);
         }
     }
@@ -99,10 +100,9 @@ public class Map extends Sprite
         enemies.add(enemy);
     }
 
-    public float distance(Enemy enemy, Building currentTurret){
+    public float distance(Entity enemy, Building currentTurret){
         float currentRange = 0.0F;
-        currentRange = (float) Point2D.distance(enemy.position.x,enemy.position.y, currentTurret.getPositionBuilding().x, currentTurret.getPositionBuilding().y);
-        System.out.println(currentRange);
+        currentRange = (float) Point2D.distance(enemy.getEntityPos().x,enemy.getEntityPos().y, currentTurret.getPositionBuilding().x, currentTurret.getPositionBuilding().y);
         return currentRange;
     }
 
@@ -118,7 +118,7 @@ public class Map extends Sprite
                 var tile = tiles[i][j];
                 if(tile.get_building()!=null){
                     Building currentTurret = tile.get_building();
-                    var currentEnemies = enemies.stream().filter(enemy -> distance(enemy,currentTurret) < currentTurret.getRange()).toArray(Enemy[]::new);
+                    var currentEnemies = enemies.stream().filter(enemy -> distance(enemy,currentTurret) < currentTurret.getRange()).toArray(Entity[]::new);
                     currentTurret.update_enemies(currentEnemies);
                 }
             }
