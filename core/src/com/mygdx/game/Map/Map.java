@@ -102,7 +102,7 @@ public class Map extends Sprite
 
     public float distance(Entity enemy, Building currentTurret){
         float currentRange = 0.0F;
-        currentRange = (float) Point2D.distance(enemy.getEntityPos().x,enemy.getEntityPos().y, currentTurret.getPositionBuilding().x, currentTurret.getPositionBuilding().y);
+        currentRange = (float) Point2D.distance(enemy.getEntityPos().x,enemy.getEntityPos().y, currentTurret.getEntityPos().x, currentTurret.getEntityPos().y);
         return currentRange;
     }
 

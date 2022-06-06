@@ -13,13 +13,13 @@ import com.mygdx.game.Enemy.Entity;
 import java.awt.geom.Point2D;
 import java.util.Vector;
 
-public abstract class Building extends Sprite
+public abstract class Building extends Entity
 {
     float cost;
-    Sprite skin;
+    //Sprite skin;
     float range;
     float shootingCooldown;
-    Vector2 position = new Vector2();
+    //Vector2 position = new Vector2();
     ShapeRenderer shapeRenderer = new ShapeRenderer();
 
     public abstract void update_enemies(Entity[] enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
@@ -27,9 +27,8 @@ public abstract class Building extends Sprite
     public abstract void setRange(float range);
     public abstract float getCooldown();
     public abstract void setCooldown(float cooldown);
-    public Vector2 getPositionBuilding(){
-        return this.position;
-    }
+
+
 
 
     public void draw(Batch batch,  Vector2 positionToPlace) {
