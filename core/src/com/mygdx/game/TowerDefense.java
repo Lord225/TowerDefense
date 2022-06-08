@@ -7,11 +7,20 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.scenes.scene2d.Event;
+import com.badlogic.gdx.scenes.scene2d.EventListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
@@ -19,6 +28,9 @@ import com.mygdx.game.Map.Map;
 import com.mygdx.game.Towers.Building;
 import com.mygdx.game.Towers.BuildingGenerator;
 import com.mygdx.game.Towers.StoneTower;
+import com.mygdx.game.Ui.Button;
+import com.mygdx.game.Ui.Text;
+import com.mygdx.game.Ui.UiTemplate;
 
 
 import java.io.FileInputStream;
@@ -45,6 +57,8 @@ public class TowerDefense extends ApplicationAdapter
 
 	float time = 0;
 
+	UiTemplate button;
+	UiTemplate label;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -76,6 +90,14 @@ public class TowerDefense extends ApplicationAdapter
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		camera.setToOrtho(false, 32*32, 32*16);
+
+		label = new Text(new ExtendViewport(32*32,32*16),new Vector2(128,32*21),"Tekst");
+		button = new Button(new ExtendViewport(32*32,32*16),
+				Resources.getInstance().tower_texture,
+				Resources.getInstance().myTextureRegion,
+				Resources.getInstance().myTextureDrawable,
+				new Vector2(64,32*21)
+		);
 		/* ZAPIS DO OBIEKTU
 		try{
 			save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
@@ -138,9 +160,14 @@ public class TowerDefense extends ApplicationAdapter
 		map.update();
 
 		batch.begin();
+
 		map.draw(batch);
 
 		batch.end();
+
+		button.draw();
+		//System.out.println(button.addListener());
+		label.draw();
 	}
 
 	void place_building()
@@ -157,6 +184,9 @@ public class TowerDefense extends ApplicationAdapter
 		tile.place(building);
 	}
 
+	void draw_ui(){
+
+	}
 	void handle_input()
 	{
 		if(Gdx.input.isTouched())
