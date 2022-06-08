@@ -40,8 +40,7 @@ public class TowerDefense extends ApplicationAdapter
 	BitmapFont font;
 	Building stoneTower;
 	BestScore bestScore;
-	ObjectOutputStream save;
-	ObjectInputStream readSave;
+
 
 	float time = 0;
 
@@ -76,40 +75,8 @@ public class TowerDefense extends ApplicationAdapter
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		camera.setToOrtho(false, 32*32, 32*16);
-		/* ZAPIS DO OBIEKTU
-		try{
-			save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
-			//tutaj dorobic stworzenie obiektu (stworzyc obiekt bestScore i dodac do konstruktora wymagane rzeczy)
-			save.writeObject(bestScore);
-		}catch(java.io.FileNotFoundException e){
-			System.out.println("FileOutputStream error "+ e);
-		}catch(java.io.IOException e) {
-			System.out.println("ObjectOutputStream error" + e);
-		}finally{
-			try {
-				if (save != null) save.close();
-			}catch(java.io.IOException e){
-			}
-		}
-		*/
-		/* ODCZYT OBIEKTU
-		try {
-			readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
-			bestScore = (BestScore) readSave.readObject();
-		}catch(java.io.FileNotFoundException e){
-			System.out.println("FileNotFoundError"+ e);
-		}catch(java.io.IOException e){
-			System.out.println("ObjectInputStream error"+ e);
-		}catch(java.lang.ClassNotFoundException e){
-			System.out.println("ClassNotFoundException"+ e);
-		}finally{
-			try {
-				if(readSave != null) readSave.close();
-			}catch(java.io.IOException e){
+		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
-			}
-		}
-		 */
 
 	}
 
