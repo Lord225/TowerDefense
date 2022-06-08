@@ -16,13 +16,13 @@ public class Text extends UiTemplate{
     String text;
     Vector2 position;
 
-    public Text(Viewport ui,Vector2 pos,String textExample) {
+    public Text(Viewport ui,Vector2 pos,String textExample,Color color) {
         super(ui);
         this.position=pos;
         this.text=textExample;
         labelStyle=new Label.LabelStyle();
         labelStyle.font=new BitmapFont();
-        labelStyle.fontColor= Color.RED;
+        labelStyle.fontColor= color;
 
         label = new Label(text,labelStyle);
         label.setSize(200,50);
