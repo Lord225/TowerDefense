@@ -11,6 +11,6 @@ public class PlayerState
 
     }
 
-    void setTower(BuildingGenerator.BuildingType type)
+    void setTower(BuildingGenerator.BuildingType type){}
 
 }
