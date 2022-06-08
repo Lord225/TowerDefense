@@ -13,13 +13,12 @@ public class PlayerState
 {
     public int gold = 100;
     public Map map;
-    public Camera cam;
+
     public BuildingGenerator.BuildingType buildingTypeInHand = BuildingGenerator.BuildingType.NONE;
 
-    public PlayerState(Map map, Camera cam)
+    public PlayerState(Map map)
     {
         this.map = map;
-        this.cam = cam;
     }
 
     public void setTower(BuildingGenerator.BuildingType type)
