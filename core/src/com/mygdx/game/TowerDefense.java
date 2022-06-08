@@ -6,6 +6,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.*;
@@ -85,14 +86,15 @@ public class TowerDefense extends ApplicationAdapter
 		camera = new OrthographicCamera();
 		map = new Map("map_layout.json");
 		batch = new SpriteBatch();
-		ghost = new Ghost(100,100);
-		stoneTower = new StoneTower(100,100);
+		//ghost = new Ghost(100,100);
+		//stoneTower = new StoneTower(100,100);
 		font = new BitmapFont();
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		camera.setToOrtho(false, 32*32, 32*16);
 		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
-		label = new Text(new ExtendViewport(32*32,32*16),new Vector2(128,32*21),"Tekst");
+
+		label = new Text(new ExtendViewport(32*32,32*16),new Vector2(128,32*21),"Tekst", Color.BLACK);
 		button = new Button(new ExtendViewport(32*32,32*16),
 				Resources.getInstance().tower_texture,
 				Resources.getInstance().myTextureRegion,
