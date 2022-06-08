@@ -20,11 +20,12 @@ public class PlayerState
     {
         this.map = map;
     }
-
+    //after click event
     public void setTower(BuildingGenerator.BuildingType type)
     {
         this.buildingTypeInHand = type;
     }
+
 
     public void onPlaceBuilding(Vector2 blockPosition)
     {
@@ -43,7 +44,7 @@ public class PlayerState
             building.is_alive = false;
         }
     }
-
+    //update golda
     public String getGoldMessage()
     {
         return String.format("Posiadasz {%d} gold'a", this.gold);

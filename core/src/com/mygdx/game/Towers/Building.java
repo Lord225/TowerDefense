@@ -51,6 +51,7 @@ public abstract class Building extends Entity
 
         for(Entity enemy : enemies_in_range){
             currentRange = (float) Point2D.distance(enemy.getX(), enemy.getY(), this.skin.getX(), this.skin.getY());
+            //System.out.println(this.skin.getX() + " " + this.skin.getY());
             if(currentRange<=closestRange){
                 closestRange = currentRange;
                 closestEnemy = enemy;

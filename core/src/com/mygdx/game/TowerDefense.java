@@ -47,20 +47,20 @@ public class TowerDefense extends ApplicationAdapter
 {
 	OrthographicCamera camera;
 	Viewport gamePort;
+	Viewport uiPort;
 	SpriteBatch batch;
 	Map map;
 	Music mainTheme;
 	Sound shootArrowS, arrowHitS, deathS ;
-	Enemy ghost;
-	BitmapFont font;
-	Building stoneTower;
 	BestScore bestScore;
+
+	PlayerState playerState;
 
 
 	float time = 0;
 
 	UiTemplate button;
-	UiTemplate label;
+	UiTemplate labelMoney;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -81,25 +81,27 @@ public class TowerDefense extends ApplicationAdapter
 		shootArrowS = Resources.getInstance().shoot_arrow;
 		arrowHitS = Resources.getInstance().arrow_hit_sound;
 		deathS = Resources.getInstance().death_sound;
+
 		//mainTheme.setLooping(true);
 		//mainTheme.play();
+
 		camera = new OrthographicCamera();
 		map = new Map("map_layout.json");
 		batch = new SpriteBatch();
-		//ghost = new Ghost(100,100);
-		//stoneTower = new StoneTower(100,100);
-		font = new BitmapFont();
+
+		playerState=new PlayerState(map);
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
+		uiPort= new ExtendViewport(32*32 , 32*16);
 		camera.setToOrtho(false, 32*32, 32*16);
 		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
-		label = new Text(new ExtendViewport(32*32,32*16),new Vector2(128,32*21),"Tekst", Color.BLACK);
-		button = new Button(new ExtendViewport(32*32,32*16),
+		labelMoney = new Text(uiPort,new Vector2(32*20,32*20),"Obecnie posiadasz: ", Color.BLACK);
+		button = new Button(uiPort,
 				Resources.getInstance().tower_texture,
 				Resources.getInstance().myTextureRegion,
 				Resources.getInstance().myTextureDrawable,
-				new Vector2(64,32*21)
+				new Vector2(64,32*20)
 		);
 
 	}
@@ -108,6 +110,7 @@ public class TowerDefense extends ApplicationAdapter
 	public void resize(int width, int height)
 	{
 		gamePort.update(width, height);
+		uiPort.update(width,height);
 	}
 	
 	@Override
@@ -135,8 +138,14 @@ public class TowerDefense extends ApplicationAdapter
 		batch.end();
 
 		button.draw();
-		//System.out.println(button.addListener());
-		label.draw();
+		button.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
+				System.out.println("Ustawiam budenk na stonetower");
+			}
+		});
 	}
 
 	void place_building()
@@ -145,7 +154,8 @@ public class TowerDefense extends ApplicationAdapter
 	}
 
 	void draw_ui(){
-
+		button.draw();
+		labelMoney.draw();
 	}
 	void handle_input()
 	{
@@ -157,7 +167,6 @@ public class TowerDefense extends ApplicationAdapter
 
 	@Override
 	public void dispose () {
-		font.dispose();
 		mainTheme.dispose();
 		shootArrowS.dispose();
 		arrowHitS.dispose();
