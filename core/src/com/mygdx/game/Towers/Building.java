@@ -34,6 +34,10 @@ public abstract class Building extends Entity
     public abstract float getCooldown();
     public abstract void setCooldown(float cooldown);
 
+    public float getCost() {
+        return cost;
+    }
+
     @Override
     public void draw(Batch batch) {
         skin.setPosition(position.x, position.y);

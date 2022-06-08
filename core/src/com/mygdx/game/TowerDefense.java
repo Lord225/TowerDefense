@@ -141,18 +141,7 @@ public class TowerDefense extends ApplicationAdapter
 
 	void place_building()
 	{
-		var blockPosition = get_pointing_block();
 
-		if(blockPosition.x < 0 || blockPosition.y < 0)
-			return;
-
-		var tile = map.get_tile_by_cords((int)blockPosition.y, (int)blockPosition.x);
-
-		var building = BuildingGenerator.get_stone_tower();
-
-		if(!tile.place(building)){
-			building.is_alive = false;
-		}
 	}
 
 	void draw_ui(){
