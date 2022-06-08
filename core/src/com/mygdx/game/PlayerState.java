@@ -36,6 +36,9 @@ public class PlayerState
 
         var building = BuildingGenerator.get_building(this.buildingTypeInHand);
 
+        if(building == null)
+            return;
+
         if(tile.place(building)){
             this.gold -= building.getCost();
         }

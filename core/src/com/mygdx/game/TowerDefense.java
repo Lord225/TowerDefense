@@ -75,6 +75,7 @@ public class TowerDefense extends ApplicationAdapter
 		}
 		return new Vector2(-1,-1);
 	}
+
 	@Override
 	public void create () {
 		mainTheme = Resources.getInstance().main_theme;
@@ -148,10 +149,6 @@ public class TowerDefense extends ApplicationAdapter
 		});
 	}
 
-	void place_building()
-	{
-
-	}
 
 	void draw_ui(){
 		button.draw();
@@ -161,7 +158,7 @@ public class TowerDefense extends ApplicationAdapter
 	{
 		if(Gdx.input.isTouched())
 		{
-			place_building();
+			playerState.onPlaceBuilding(get_pointing_block());
 		}
 	}
 
