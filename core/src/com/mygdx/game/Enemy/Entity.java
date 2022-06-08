@@ -14,14 +14,12 @@ public abstract class Entity extends Sprite {
     }
     @Override
     public void draw(Batch batch) {
-        // set origin to mid
-        // set postion
-        // draw.
-
         skin.setPosition(this.position.x, this.position.y);
         skin.draw(batch);
-
     }
+
+    public void update() {}
+
     public Sprite getEntitySkin(){
         return this.skin;
     }

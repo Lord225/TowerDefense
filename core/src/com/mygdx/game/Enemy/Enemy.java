@@ -30,24 +30,4 @@ public abstract class Enemy extends Entity
     public void setProgress(float progress) {
         this.progress = progress;
     }
-    /*
-    public void setPositionEnemy(Vector2 position){
-        this.position = position;
-    }
-
-     */
-
-    /*
-    @Override
-    public void draw(Batch batch) {
-        // set origin to mid
-        // set postion
-        // draw.
-
-        skin.setPosition(this.position.x, this.position.y);
-        skin.draw(batch);
-
-    }
-
-     */
 }

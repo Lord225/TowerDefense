@@ -74,6 +74,11 @@ public class Map extends Sprite
     {
         route.update_entities(enemies);
         update_turrents();
+
+        for(var ent : enemies)
+        {
+            ent.update();
+        }
     }
 
     @Override
@@ -100,6 +105,11 @@ public class Map extends Sprite
         enemies.add(enemy);
     }
 
+    public void killEntity(Entity entity)
+    {
+        enemies.removeIf(x -> x==entity);
+    }
+
     public float distance(Entity enemy, Building currentTurret){
         float currentRange = 0.0F;
         currentRange = (float) Point2D.distance(enemy.getEntityPos().x,enemy.getEntityPos().y, currentTurret.getEntityPos().x, currentTurret.getEntityPos().y);
@@ -108,10 +118,6 @@ public class Map extends Sprite
 
     void update_turrents()
     {
-        // Przejść przez wszstkie wiezyczki (x)
-        // Znaleść dla każdej wieżyczki enemiy w zasięgu
-        // Wywołać dla każdej wiezyczki funkcje update_enemies (wcześniej) (x)
-        //Building currentTurret = null;
         for (int j = 0; j < 32; j++) {
             for (int i = 0; i < 16; i++)
             {
@@ -119,13 +125,10 @@ public class Map extends Sprite
                 if(tile.get_building()!=null){
                     Building currentTurret = tile.get_building();
                     var currentEnemies = enemies.stream().filter(enemy -> distance(enemy,currentTurret) < currentTurret.getRange()).toArray(Entity[]::new);
-                    currentTurret.update_enemies(currentEnemies);
+                    currentTurret.update_enemies(currentEnemies, this);
                 }
             }
         }
-
-
-
     }
 
 }

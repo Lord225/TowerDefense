@@ -1,9 +1,12 @@
 package com.mygdx.game.Towers;
 
 import Miscellaneous.Resources;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.mygdx.game.Enemy.Arrow;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Entity;
+import com.mygdx.game.Map.Map;
 
 import java.util.Vector;
 import java.awt.geom.Point2D;
@@ -16,11 +19,23 @@ public class StoneTower extends Building {
         this.skin = Resources.getInstance().tower_sprite;
     }
     @Override
-    public void update_enemies(Entity[] enemies_in_range)
+    public void update_enemies(Entity[] enemies_in_range, Map map)
     {
-        System.out.println("Enemy Update!: " + enemies_in_range.length);
+        if(currentCooldown >= shootingCooldown) {
+            var target = this.findClosestEnemy(enemies_in_range);
+
+            if (target instanceof Enemy enemy) {
+                map.enemies.add(Arrow.emmit(enemy, tile, map));
+                currentCooldown = 0;
+            }
+        }
     }
 
+    @Override
+    public void update()
+    {
+        currentCooldown += Gdx.graphics.getDeltaTime();
+    }
 
     @Override
     public float getRange() {
