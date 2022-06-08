@@ -6,6 +6,8 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
+import java.io.File;
+
 public class Resources
 {
     public Sprite ghost_sprite = new Sprite(new Texture("textures/enemy/ghost.png"));
@@ -15,6 +17,7 @@ public class Resources
     public Sound shoot_arrow = Gdx.audio.newSound(Gdx.files.internal("sound_effects/shoot.mp3"));
     public Sound arrow_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/hitsound.mp3"));
     public Sound death_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/deathsound.mp3"));
+    public File bestScoreFile = new File("bestScore.dat");
     private static Resources _instance;
 
     public static Resources getInstance()
