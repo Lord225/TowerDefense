@@ -9,25 +9,23 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class Enemy extends Entity
 {
-    //public Vector2 position = new Vector2();
     float progress = 0.0f;
 
     float health;
     float speed;
-    //public Sprite skin;
-
-
 
     public void updateHealth(float damage){
-        this.health -= getHealth();
+        this.setHealth(getHealth()-damage);
     }
 
     public float getHealth(){
         return this.health;
     }
 
-    public void setHealth(float newHp){
+    public void setHealth(float newHp) {
         this.health = newHp;
+        if (this.health < 0)
+            this.is_alive = false;
     }
 
     public float getSpeed(){

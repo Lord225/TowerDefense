@@ -19,7 +19,6 @@ public class Arrow extends Projectile
 
     @Override
     public void onProjectileHit(Enemy enemy) {
-        System.out.println("Enemy hitted");
         enemy.updateHealth(10.0f);
     }
 }
