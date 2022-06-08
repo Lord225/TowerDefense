@@ -17,11 +17,26 @@ public abstract class Enemy extends Entity
     //public Sprite skin;
 
 
-    abstract public void updateHealth(float damage);
-    abstract public float getHealth();
-    abstract public void setHealth(float newHp);
-    abstract public float getSpeed();
-    abstract public void setSpeed(int newVal);
+
+    public void updateHealth(float damage){
+        this.health -= getHealth();
+    }
+
+    public float getHealth(){
+        return this.health;
+    }
+
+    public void setHealth(float newHp){
+        this.health = newHp;
+    }
+
+    public float getSpeed(){
+        return this.speed;
+    }
+
+    public void setSpeed(int newVal){
+        this.speed = this.speed - newVal;
+    }
 
     public float getProgress() {
         return progress;

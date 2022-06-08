@@ -28,8 +28,7 @@ public abstract class Building extends Entity
 
     public Tile tile = null;
 
-
-    public abstract void update_enemies(Entity[] enemies_in_range, Map map); // przeciwnicy w zasiegu (sprawdzenie)
+    public abstract void update_enemies(Entity[] enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
     public abstract float getRange(); // range wiezyczki
     public abstract void setRange(float range);
     public abstract float getCooldown();

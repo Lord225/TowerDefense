@@ -19,13 +19,13 @@ public class StoneTower extends Building {
         this.skin = Resources.getInstance().tower_sprite;
     }
     @Override
-    public void update_enemies(Entity[] enemies_in_range, Map map)
+    public void update_enemies(Entity[] enemies_in_range)
     {
         if(currentCooldown >= shootingCooldown) {
             var target = this.findClosestEnemy(enemies_in_range);
 
             if (target instanceof Enemy enemy) {
-                map.enemies.add(Arrow.emmit(enemy, tile, map));
+                Arrow.emmit(enemy, tile);
                 currentCooldown = 0;
             }
         }

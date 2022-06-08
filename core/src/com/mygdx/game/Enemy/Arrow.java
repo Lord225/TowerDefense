@@ -7,18 +7,14 @@ import com.mygdx.game.Map.Tile;
 
 public class Arrow extends Projectile
 {
-    public Arrow(Enemy target, Vector2 start, float speed, Map map) {
-        super(target, start, speed, map);
+    public Arrow(Enemy target, Vector2 start, float speed) {
+        super(target, start, speed);
         this.skin = Resources.getInstance().arrow_sprite;
     }
 
-    public static Arrow emmit(Enemy target, Tile start, Map map)
+    public static Arrow emmit(Enemy target, Tile start)
     {
-        var projectile =  new Arrow(target, start.getPosition(), 0.2f, map);
-
-        map.enemies.add(projectile);
-
-        return projectile;
+        return new Arrow(target, start.getPosition(), 0.06f);
     }
 
     @Override

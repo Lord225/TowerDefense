@@ -148,7 +148,9 @@ public class TowerDefense extends ApplicationAdapter
 
 		var building = BuildingGenerator.get_stone_tower();
 
-		tile.place(building);
+		if(!tile.place(building)){
+			building.is_alive = false;
+		}
 	}
 
 	void draw_ui(){

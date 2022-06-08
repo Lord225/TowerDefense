@@ -27,13 +27,18 @@ public class Route
         }
     }
 
-    static abstract class Callback
+    interface Callback
     {
-        public abstract void arrival_event(Entity enemy);
+        void arrival_event(Entity enemy);
     }
 
     public Vector<Callback> callbacks = new Vector<>();
     public Vector<VectorWithLenght> route = new Vector<>();
+
+    public Route()
+    {
+        set_on_arrival_callback(enemy -> enemy.is_alive = false);
+    }
 
     void add_point(float x, float y)
     {
@@ -86,15 +91,14 @@ public class Route
             }
         }
 
-        entities.removeIf(entity -> {
+        for(var entity : entities)
+        {
             if(entity instanceof Enemy enemy) {
                 if (enemy.getProgress() > this.get_route_lenght()) {
                     enemie_arrived(enemy);
-                    return true;
                 }
             }
-            return false;
-        });
+        }
     }
 
     void enemie_arrived(Enemy enemy)

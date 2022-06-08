@@ -8,23 +8,28 @@ import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Entity;
+import com.mygdx.game.Enemy.EntityMenager;
 import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Towers.Building;
 
 import java.awt.geom.Point2D;
 import java.util.Arrays;
 import java.util.Vector;
+import java.util.stream.Collectors;
 
 public class Map extends Sprite
 {
     Tile[][] tiles;
     public Route route;
-    public Vector<Entity> enemies = new Vector<>();
+    public EntityMenager menager;
 
     public Map(String path)
     {
         this.tiles = new Tile[16][32];
         this.route = new Route();
+        this.menager = new EntityMenager();
+
+        menager.useAsDefault();
 
         JsonReader json = new JsonReader();
         JsonValue base = json.parse(Gdx.files.internal(path));
@@ -55,13 +60,7 @@ public class Map extends Sprite
             var y = route_point.asFloatArray()[1];
             this.route.add_point(x, y);
         }
-        this.route.set_on_arrival_callback(new Route.Callback() {
-
-            @Override
-            public void arrival_event(Entity enemy) {
-                System.out.println("Enemy hitted target");
-            }
-        });
+        this.route.set_on_arrival_callback(enemy -> System.out.println("Enemy hitted target"));
     }
 
 
@@ -72,13 +71,10 @@ public class Map extends Sprite
     
     public void update()
     {
-        route.update_entities(enemies);
+        route.update_entities(menager.getRef());
         update_turrents();
 
-        for(var ent : enemies)
-        {
-            ent.update();
-        }
+        menager.update();
     }
 
     @Override
@@ -92,22 +88,12 @@ public class Map extends Sprite
             }
         }
 
-        // Draw enemies
-        for(Entity x: enemies){
-            x.draw(batch);
-        }
+        menager.draw(batch);
     }
 
     public void spawnEnemy()
     {
         Enemy enemy = new Ghost(100, 0.5f);
-
-        enemies.add(enemy);
-    }
-
-    public void killEntity(Entity entity)
-    {
-        enemies.removeIf(x -> x==entity);
     }
 
     public float distance(Entity enemy, Building currentTurret){
@@ -118,6 +104,8 @@ public class Map extends Sprite
 
     void update_turrents()
     {
+        var enemies = Arrays.stream(menager.getOwned()).filter(x -> x instanceof Enemy).toList();
+
         for (int j = 0; j < 32; j++) {
             for (int i = 0; i < 16; i++)
             {
@@ -125,7 +113,7 @@ public class Map extends Sprite
                 if(tile.get_building()!=null){
                     Building currentTurret = tile.get_building();
                     var currentEnemies = enemies.stream().filter(enemy -> distance(enemy,currentTurret) < currentTurret.getRange()).toArray(Entity[]::new);
-                    currentTurret.update_enemies(currentEnemies, this);
+                    currentTurret.update_enemies(currentEnemies);
                 }
             }
         }

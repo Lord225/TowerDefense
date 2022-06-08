@@ -14,24 +14,4 @@ public class Ghost extends Enemy
         this.skin = Resources.getInstance().ghost_sprite;
 
     }
-    @Override
-    public void updateHealth(float damage){
-        this.health -= getHealth();
-    }
-    @Override
-    public float getHealth(){
-        return this.health;
-    }
-    @Override
-    public void setHealth(float newHp){
-        this.health = newHp;
-    }
-    @Override
-    public float getSpeed(){
-        return this.speed;
-    }
-    @Override
-    public void setSpeed(int newVal){
-        this.speed = this.speed - newVal;
-    }
 }

@@ -7,12 +7,13 @@ import com.mygdx.game.Towers.Building;
 
 public class Tile extends Sprite
 {
+    private final Vector2 position = new Vector2();
+    private Building placed_building;
+    private final boolean isPlacable;
+
     public final static float TILE_SIZE = 32.0f;
 
-    public final boolean isPlacable;
-    private final Vector2 position = new Vector2();
 
-    private Building placed_building;
     public Vector2 getPosition() {
         return position;
     }
