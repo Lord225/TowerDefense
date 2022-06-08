@@ -11,7 +11,7 @@ public class Ghost extends Enemy
     public Ghost(float hp, float speed){
         this.health = hp;
         this.speed = speed;
-        this.skin = Resources.getInstance().ghost_sprite;
+        this.skin = new Sprite(Resources.getInstance().ghost_sprite);
 
     }
 }

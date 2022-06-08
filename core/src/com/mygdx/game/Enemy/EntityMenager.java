@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class EntityMenager
 {
-    public static boolean debug_mode = true;
+    public static boolean debug_mode = false;
 
     private static EntityMenager default_menager = null;
 
