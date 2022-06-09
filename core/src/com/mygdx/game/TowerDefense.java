@@ -105,6 +105,14 @@ public class TowerDefense extends ApplicationAdapter
 				new Vector2(64,32*20)
 		);
 
+		bestScore = new BestScore();
+		bestScore = bestScore.loadBest();
+		if(bestScore == null){
+			bestScore = new BestScore(map,playerState);
+			bestScore.saveBest(bestScore);
+		}
+
+
 	}
 
 	@Override
@@ -166,9 +174,15 @@ public class TowerDefense extends ApplicationAdapter
 
 	@Override
 	public void dispose () {
+
 		mainTheme.dispose();
 		shootArrowS.dispose();
 		arrowHitS.dispose();
 		deathS.dispose();
+		if(bestScore.getPlayerState().getEnemiesDefeated()<playerState.getEnemiesDefeated()){
+			bestScore.setMap(map);
+			bestScore.setPlayerState(playerState);
+			bestScore.saveBest(bestScore);
+		}
 	}
 }

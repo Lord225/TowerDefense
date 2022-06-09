@@ -64,6 +64,9 @@ public class PlayerState
     public void addGold(int g){
         this.gold+=g;
     }
+    public int getEnemiesDefeated(){
+        return this.getEnemiesDefeated();
+    }
 
     private static PlayerState _instance;
 
