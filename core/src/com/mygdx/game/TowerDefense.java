@@ -110,9 +110,15 @@ public class TowerDefense extends ApplicationAdapter
 		);
 		buttonQStone = new Button(uiPort,
 				Resources.getInstance().towerQ_texture,
-				Resources.getInstance().myQTextureRegion,
-				Resources.getInstance().myQTextureDrawable,
+				new TextureRegion(Resources.getInstance().myQTextureRegion),
+				new TextureRegionDrawable(Resources.getInstance().myQTextureDrawable),
 				new Vector2(32*4,32*20)
+		);
+		buttonFireball = new Button(uiPort,
+				Resources.getInstance().towerF_texture,
+				new TextureRegion(Resources.getInstance().myFTextureRegion),
+				new TextureRegionDrawable(Resources.getInstance().myFTextureDrawable),
+				new Vector2(32*6,32*20)
 		);
 
 		bestScore = new BestScore();
@@ -122,13 +128,6 @@ public class TowerDefense extends ApplicationAdapter
 			bestScore.saveBest(bestScore);
 		}
 
-
-		buttonFireball = new Button(uiPort,
-				Resources.getInstance().towerF_texture,
-				Resources.getInstance().myFTextureRegion,
-				Resources.getInstance().myFTextureDrawable,
-				new Vector2(32*6,32*20)
-		);
 		buttonStone.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y)

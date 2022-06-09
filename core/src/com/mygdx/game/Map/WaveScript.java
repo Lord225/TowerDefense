@@ -1,9 +1,7 @@
 package com.mygdx.game.Map;
 
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Ghost;
-import com.mygdx.game.Map.Map;
 
 public class WaveScript
 {
@@ -15,7 +13,7 @@ public class WaveScript
         }
 
         int size;
-        EnemyFactory enemy;
+        EnemyFactory enemyFactory;
         float spawn_rate;
 
         private float wave_timer = 0;
@@ -24,7 +22,7 @@ public class WaveScript
         public Wave(int size, EnemyFactory enemy, float spawn_rate)
         {
             this.size = size;
-            this.enemy = enemy;
+            this.enemyFactory = enemy;
             this.spawn_rate = spawn_rate;
         }
 
@@ -34,7 +32,7 @@ public class WaveScript
 
             if(wave_timer > spawn_rate)
             {
-                enemy.make();
+                enemyFactory.make();
                 current_size += 1;
                 wave_timer = 0;
             }
