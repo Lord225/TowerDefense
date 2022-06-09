@@ -8,9 +8,11 @@ import com.badlogic.gdx.math.Vector3;
 import com.mygdx.game.Map.Map;
 import com.mygdx.game.Towers.BuildingGenerator;
 
+import java.io.Serializable;
+
 import static com.badlogic.gdx.math.MathUtils.floor;
 
-public class PlayerState
+public class PlayerState implements Serializable
 {
     public int gold = 100;
     public Map map;

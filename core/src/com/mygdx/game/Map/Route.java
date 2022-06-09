@@ -5,9 +5,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Entity;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class Route
+public class Route implements Serializable
 {
     static class VectorWithLenght extends Vector2
     {
