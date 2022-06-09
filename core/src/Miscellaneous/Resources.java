@@ -20,7 +20,7 @@ public class Resources
     public TextureRegion myTextureRegion = new TextureRegion(tower_texture);
     public TextureRegionDrawable myTextureDrawable = new TextureRegionDrawable(myTextureRegion);
 
-    public Texture towerQ_texture = new Texture("textures/entity/tower.png");
+    public Texture towerQ_texture = new Texture("textures/entity/greentower.png");
     public TextureRegion myQTextureRegion = new TextureRegion(towerQ_texture);
     public TextureRegionDrawable myQTextureDrawable = new TextureRegionDrawable(myQTextureRegion);
 
