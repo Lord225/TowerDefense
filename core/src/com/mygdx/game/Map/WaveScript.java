@@ -3,6 +3,8 @@ package com.mygdx.game.Map;
 import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Enemy.Ghost;
 
+import java.io.Serializable;
+
 public class WaveScript
 {
     public class Wave
