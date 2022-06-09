@@ -5,7 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.mygdx.game.Enemy.Entity;
 import com.mygdx.game.Map.Map;
+import com.mygdx.game.Map.Route;
 import com.mygdx.game.Towers.BuildingGenerator;
 
 import java.io.Serializable;
@@ -16,13 +18,24 @@ public class PlayerState implements Serializable
 {
     public int gold = 100;
     public Map map;
+    public int health=10;
     public int enemiesDefeated=0;
+    public boolean isDead=false;
 
     public BuildingGenerator.BuildingType buildingTypeInHand = BuildingGenerator.BuildingType.NONE;
 
     public PlayerState(Map map)
     {
         this.map = map;
+        this.map.route.set_on_arrival_callback(new Route.Callback(){
+            @Override
+            public void arrival_event(Entity enemy) {
+                health--;
+                if(health==0){
+                    isDead=true;
+                }
+            }
+        });
     }
     //after click event
     public void setTower(BuildingGenerator.BuildingType type)

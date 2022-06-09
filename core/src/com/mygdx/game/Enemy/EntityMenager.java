@@ -39,7 +39,6 @@ public class EntityMenager implements Serializable
         {
             entity.update();
         }
-
         entites.removeIf(x -> !x.isAlive());
     }
 

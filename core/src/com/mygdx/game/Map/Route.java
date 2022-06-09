@@ -28,7 +28,7 @@ public class Route implements Serializable
         }
     }
 
-    interface Callback
+    public interface Callback
     {
         void arrival_event(Entity enemy);
     }

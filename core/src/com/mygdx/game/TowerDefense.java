@@ -52,7 +52,6 @@ public class TowerDefense extends ApplicationAdapter
 	SpriteBatch batch;
 	Map map;
 	Music mainTheme;
-	Sound shootArrowS, arrowHitS, deathS ;
 	BestScore bestScore;
 
 	public static PlayerState playerState;
@@ -85,12 +84,9 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void create () {
 		mainTheme = Resources.getInstance().main_theme;
-		shootArrowS = Resources.getInstance().shoot_arrow;
-		arrowHitS = Resources.getInstance().arrow_hit_sound;
-		deathS = Resources.getInstance().death_sound;
 
-		//mainTheme.setLooping(true);
-		//mainTheme.play();
+		mainTheme.setLooping(true);
+		mainTheme.setVolume(0.075F);
 
 		camera = new OrthographicCamera();
 		map = new Map("map_layout.json");
@@ -171,6 +167,7 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void render()
 	{
+		mainTheme.play();
 		time += Gdx.graphics.getDeltaTime();
 		ScreenUtils.clear(0.2f, 0.3f, 0.4f, 1);
 
@@ -195,6 +192,9 @@ public class TowerDefense extends ApplicationAdapter
 
 		labelMoney.setText(playerState.getGoldMessage());
 		labelMoney.draw();
+		if(playerState.isDead){
+			Gdx.app.exit();
+		}
 		/*
 		//button.draw();
 		button.addListener(new ClickListener(){
@@ -211,10 +211,6 @@ public class TowerDefense extends ApplicationAdapter
 
 	}
 
-
-	void draw_ui(){
-
-	}
 	void handle_input()
 	{
 		if(Gdx.input.isTouched())
@@ -226,9 +222,6 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void dispose () {
 		mainTheme.dispose();
-		shootArrowS.dispose();
-		arrowHitS.dispose();
-		deathS.dispose();
 		if(bestScore.getPlayerState().getEnemiesDefeated()<playerState.getEnemiesDefeated()){
 			bestScore.setMap(map);
 			bestScore.setPlayerState(playerState);

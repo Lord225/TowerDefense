@@ -38,6 +38,7 @@ public abstract class Enemy extends Entity
         this.health = newHp;
         if (this.health < 0 && this.is_alive) {
             this.is_alive = false;
+            Resources.getInstance().death_sound.play();
             playerState.addGold(this.getWorth());
             playerState.enemiesDefeated++;
         }
