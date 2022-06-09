@@ -9,11 +9,9 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 
 public abstract class UiTemplate extends Actor {
     protected Stage stage;
-    protected Viewport uiPort;
 
-    public UiTemplate(Viewport ui){
-        this.uiPort=ui;
-        stage = new Stage(this.uiPort);
+    public UiTemplate(Stage stage){
+        this.stage=stage;
     }
 
     public void draw() {

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -16,8 +17,8 @@ public class Text extends UiTemplate {
     String text;
     Vector2 position;
 
-    public Text(Viewport ui,Vector2 pos,String textExample,Color color) {
-        super(ui);
+    public Text(Vector2 pos, String textExample, Color color, Stage stage) {
+        super(stage);
         this.position=pos;
         this.text=textExample;
         labelStyle=new Label.LabelStyle();

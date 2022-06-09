@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.EventListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -18,8 +19,8 @@ public class Button extends UiTemplate{
     ImageButton button;
     Vector2 position;
 
-    public Button(Viewport ui, Texture t, TextureRegion tr, TextureRegionDrawable trd, Vector2 pos) {
-        super(ui);
+    public Button(Texture t, TextureRegion tr, TextureRegionDrawable trd, Vector2 pos, Stage stage) {
+        super(stage);
         this.myTexture = t;
         this.myTextureRegion = tr;
         this.myTextureDrawable = trd;
