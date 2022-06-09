@@ -18,7 +18,7 @@ import java.util.Arrays;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
-public class Map extends Sprite implements Serializable
+public class Map extends Sprite
 {
     Tile[][] tiles;
     public Route route;

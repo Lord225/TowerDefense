@@ -8,7 +8,7 @@ import com.mygdx.game.Enemy.Entity;
 import java.io.Serializable;
 import java.util.Vector;
 
-public class Route implements Serializable
+public class Route
 {
     static class VectorWithLenght extends Vector2
     {
