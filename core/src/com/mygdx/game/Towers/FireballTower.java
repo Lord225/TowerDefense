@@ -1,4 +1,6 @@
 package com.mygdx.game.Towers;
 
-public class FireballTower {
+public class FireballTower
+{
+
 }
