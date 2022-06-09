@@ -67,7 +67,7 @@ public class PlayerState implements Serializable
         this.gold+=g;
     }
     public int getEnemiesDefeated(){
-        return this.getEnemiesDefeated();
+        return this.enemiesDefeated;
     }
 
     private static PlayerState _instance;
