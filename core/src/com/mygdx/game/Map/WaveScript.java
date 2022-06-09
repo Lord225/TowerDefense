@@ -67,7 +67,7 @@ public class WaveScript
 
     void update()
     {
-        if(current > waves.length)
+        if(current >= waves.length)
         {
             System.out.println("End of script");
             return;
