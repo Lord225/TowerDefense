@@ -52,6 +52,7 @@ public class TowerDefense extends ApplicationAdapter
 	SpriteBatch batch;
 	Map map;
 	Music mainTheme;
+	Sound shootArrowS, arrowHitS, deathS ;
 	BestScore bestScore;
 
 	public static PlayerState playerState;
@@ -66,6 +67,7 @@ public class TowerDefense extends ApplicationAdapter
 	Button buttonFireball;
 
 	Text labelMoney;
+	Text labelBestScore;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -125,10 +127,11 @@ public class TowerDefense extends ApplicationAdapter
 		);
 
 		bestScore = new BestScore();
-		bestScore = bestScore.loadBest();
-		if(bestScore == null){
-			bestScore = new BestScore(map,playerState);
-			bestScore.saveBest(bestScore);
+		bestScore.loadBest();
+		if(bestScore.getPlayerState() == null){
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: 0", Color.WHITE,stage);
+		}else{
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: "+bestScore.getPlayerState().getEnemiesDefeated(), Color.WHITE,stage);
 		}
 
 		buttonStone.addListener(new ClickListener(){
@@ -192,6 +195,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		labelMoney.setText(playerState.getGoldMessage());
 		labelMoney.draw();
+		labelBestScore.draw();
 		if(playerState.isDead){
 			Gdx.app.exit();
 		}
@@ -211,6 +215,10 @@ public class TowerDefense extends ApplicationAdapter
 
 	}
 
+
+	void draw_ui(){
+
+	}
 	void handle_input()
 	{
 		if(Gdx.input.isTouched())
@@ -222,10 +230,15 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void dispose () {
 		mainTheme.dispose();
-		if(bestScore.getPlayerState().getEnemiesDefeated()<playerState.getEnemiesDefeated()){
-			bestScore.setMap(map);
-			bestScore.setPlayerState(playerState);
-			bestScore.saveBest(bestScore);
+		shootArrowS.dispose();
+		arrowHitS.dispose();
+		deathS.dispose();
+		if(bestScore.getPlayerState()==null){
+			bestScore.saveBest(playerState);
+		}else {
+			if (bestScore.getPlayerState().getEnemiesDefeated() < playerState.getEnemiesDefeated()) {
+				bestScore.saveBest(playerState);
+			}
 		}
 	}
 }

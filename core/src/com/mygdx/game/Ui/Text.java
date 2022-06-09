@@ -25,7 +25,9 @@ public class Text extends UiTemplate {
         labelStyle.font=new BitmapFont();
         labelStyle.fontColor= color;
         label = new Label(this.text,labelStyle);
+        label.setPosition(position.x,position.y);
         stage.addActor(label);
+
     }
     public void setText(String text){
         this.text=text;

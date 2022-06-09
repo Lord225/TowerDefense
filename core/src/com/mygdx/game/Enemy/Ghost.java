@@ -16,6 +16,6 @@ public class Ghost extends Enemy
 
     @Override
     public int getWorth() {
-        return 10;
+        return 20;
     }
 }
