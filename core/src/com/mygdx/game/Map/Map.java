@@ -22,12 +22,14 @@ public class Map extends Sprite
     Tile[][] tiles;
     public Route route;
     public EntityMenager menager;
+    public WaveScript script;
 
     public Map(String path)
     {
         this.tiles = new Tile[16][32];
         this.route = new Route();
         this.menager = new EntityMenager();
+        this.script = new WaveScript();
 
         menager.useAsDefault();
 
@@ -72,8 +74,8 @@ public class Map extends Sprite
     public void update()
     {
         route.update_entities(menager.getRef());
-        update_turrents();
-
+        this.update_turrents();
+        script.update();
         menager.update();
     }
 
@@ -89,11 +91,6 @@ public class Map extends Sprite
         }
 
         menager.draw(batch);
-    }
-
-    public void spawnEnemy()
-    {
-        Enemy enemy = new Ghost(100, 0.5f);
     }
 
     public float distance(Entity enemy, Building currentTurret){
