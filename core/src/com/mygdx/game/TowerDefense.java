@@ -89,8 +89,8 @@ public class TowerDefense extends ApplicationAdapter
 		arrowHitS = Resources.getInstance().arrow_hit_sound;
 		deathS = Resources.getInstance().death_sound;
 
-		//mainTheme.setLooping(true);
-		//mainTheme.play();
+		mainTheme.setLooping(true);
+		mainTheme.play();
 
 		camera = new OrthographicCamera();
 		map = new Map("map_layout.json");
@@ -129,11 +129,8 @@ public class TowerDefense extends ApplicationAdapter
 		);
 
 		bestScore = new BestScore();
-		bestScore = bestScore.loadBest();
-		if(bestScore == null){
-			bestScore = new BestScore(map,playerState);
-			bestScore.saveBest(bestScore);
-		}
+		bestScore.loadBest();
+
 
 		buttonStone.addListener(new ClickListener(){
 			@Override
@@ -229,10 +226,12 @@ public class TowerDefense extends ApplicationAdapter
 		shootArrowS.dispose();
 		arrowHitS.dispose();
 		deathS.dispose();
-		if(bestScore.getPlayerState().getEnemiesDefeated()<playerState.getEnemiesDefeated()){
-			bestScore.setMap(map);
-			bestScore.setPlayerState(playerState);
-			bestScore.saveBest(bestScore);
+		if(bestScore.getPlayerState()==null){
+			bestScore.saveBest(playerState);
+		}else {
+			if (bestScore.getPlayerState().getEnemiesDefeated() < playerState.getEnemiesDefeated()) {
+				bestScore.saveBest(playerState);
+			}
 		}
 	}
 }

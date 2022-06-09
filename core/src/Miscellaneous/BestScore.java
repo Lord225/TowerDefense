@@ -11,44 +11,43 @@ public class BestScore implements Serializable {
 
     Map map;
     PlayerState playerState;
-    //ObjectOutputStream save;
-    //ObjectInputStream readSave;
-    XMLEncoder save;
-    XMLDecoder readSave;
+    ObjectOutputStream save;
+    ObjectInputStream readSave;
+    //XMLEncoder save;
+   // XMLDecoder readSave;
 
 
-    public BestScore(){
-
-    }
-
-    public BestScore(Map map, PlayerState playerState){
-        this.map=map;
-        this.playerState = playerState;
-    }
-
-    public BestScore loadBest(){
-        BestScore getBestScore = null;
+    public void loadBest() {
         try {
-            //readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
-            readSave = new XMLDecoder(new FileInputStream(Resources.getInstance().bestScoreFileXML));
-            getBestScore = (BestScore) readSave.readObject();
-        }catch(java.io.FileNotFoundException e){
-            System.out.println("FileNotFoundError"+ e);
-        }finally{
-                if(readSave != null) readSave.close();
+            readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
+            //readSave = new XMLDecoder(new FileInputStream(Resources.getInstance().bestScoreFileXML));
+            this.playerState = (PlayerState) readSave.readObject();
+        } catch (FileNotFoundException | ClassNotFoundException e) {
+            System.out.println("FileNotFoundError" + e);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (readSave != null) readSave.close();
+            }catch( java.io.IOException e){
+
+            }
         }
-        return getBestScore;
     }
 
-    public void saveBest(BestScore bestScore) {
+    public void saveBest(PlayerState playerState) {
         try {
-            //save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
-            save = new XMLEncoder(new FileOutputStream(Resources.getInstance().bestScoreFileXML));
-            save.writeObject(bestScore);
-        } catch (java.io.FileNotFoundException e) {
+            save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
+            //save = new XMLEncoder(new FileOutputStream(Resources.getInstance().bestScoreFileXML));
+            save.writeObject(playerState);
+        } catch (IOException e) {
             System.out.println("FileOutputStream error " + e);
         } finally {
-            if (save != null) save.close();
+            try {
+                if (save != null) save.close();
+            }catch(java.io.IOException e){
+
+            }
         }
     }
 
@@ -61,8 +60,6 @@ public class BestScore implements Serializable {
     public void setMap(Map map){
         this.map = map;
     }
-    public void setPlayerState(PlayerState player){
-        this.playerState = player;
-    }
+
 
 }

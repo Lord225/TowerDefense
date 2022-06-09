@@ -15,10 +15,10 @@ import static com.badlogic.gdx.math.MathUtils.floor;
 public class PlayerState implements Serializable
 {
     public int gold = 100;
-    public Map map;
+    public transient Map map;
     public int enemiesDefeated=0;
 
-    public BuildingGenerator.BuildingType buildingTypeInHand = BuildingGenerator.BuildingType.NONE;
+    public transient BuildingGenerator.BuildingType buildingTypeInHand = BuildingGenerator.BuildingType.NONE;
 
     public PlayerState(Map map)
     {
