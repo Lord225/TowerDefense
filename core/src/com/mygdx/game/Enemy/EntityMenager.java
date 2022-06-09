@@ -17,7 +17,7 @@ public class EntityMenager
 
     public void addEntity(Entity entity)
     {
-        if(!this.entites.contains(entity)) {
+        if(entity != null && !this.entites.contains(entity)) {
             this.entites.add(entity);
 
             if(debug_mode)

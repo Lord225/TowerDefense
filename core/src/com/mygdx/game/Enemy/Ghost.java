@@ -12,6 +12,10 @@ public class Ghost extends Enemy
         this.health = hp;
         this.speed = speed;
         this.skin = new Sprite(Resources.getInstance().ghost_sprite);
+    }
 
+    @Override
+    public int getWorth() {
+        return 10;
     }
 }
