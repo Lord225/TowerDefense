@@ -13,11 +13,12 @@ import com.mygdx.game.Enemy.Ghost;
 import com.mygdx.game.Towers.Building;
 
 import java.awt.geom.Point2D;
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Vector;
 import java.util.stream.Collectors;
 
-public class Map extends Sprite
+public class Map extends Sprite implements Serializable
 {
     Tile[][] tiles;
     public Route route;

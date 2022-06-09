@@ -114,6 +114,15 @@ public class TowerDefense extends ApplicationAdapter
 				Resources.getInstance().myQTextureDrawable,
 				new Vector2(32*4,32*20)
 		);
+
+		bestScore = new BestScore();
+		bestScore = bestScore.loadBest();
+		if(bestScore == null){
+			bestScore = new BestScore(map,playerState);
+			bestScore.saveBest(bestScore);
+		}
+
+
 		buttonFireball = new Button(uiPort,
 				Resources.getInstance().towerF_texture,
 				Resources.getInstance().myFTextureRegion,
@@ -214,5 +223,10 @@ public class TowerDefense extends ApplicationAdapter
 		shootArrowS.dispose();
 		arrowHitS.dispose();
 		deathS.dispose();
+		if(bestScore.getPlayerState().getEnemiesDefeated()<playerState.getEnemiesDefeated()){
+			bestScore.setMap(map);
+			bestScore.setPlayerState(playerState);
+			bestScore.saveBest(bestScore);
+		}
 	}
 }

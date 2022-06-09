@@ -2,9 +2,10 @@ package com.mygdx.game.Enemy;
 
 import com.badlogic.gdx.graphics.g2d.Batch;
 
+import java.io.Serializable;
 import java.util.Vector;
 
-public class EntityMenager
+public class EntityMenager implements Serializable
 {
     public static boolean debug_mode = false;
 

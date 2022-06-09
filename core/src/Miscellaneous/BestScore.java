@@ -1,23 +1,24 @@
 package Miscellaneous;
 
 import com.mygdx.game.Map.Map;
+import com.mygdx.game.PlayerState;
 
 import java.io.*;
 
 public class BestScore implements Serializable {
 
     Map map;
-    float points;
-    int gold;
-    String userName;
+    PlayerState playerState;
     ObjectOutputStream save;
     ObjectInputStream readSave;
 
-    BestScore(Map map, float points, int gold, String userName){
+    public BestScore(){
+
+    }
+
+    public BestScore(Map map, PlayerState playerState){
         this.map=map;
-        this.points=points;
-        this.gold = gold;
-        this.userName = userName;
+        this.playerState = playerState;
     }
 
     public BestScore loadBest(){
@@ -60,16 +61,14 @@ public class BestScore implements Serializable {
     public Map getMap() {
         return map;
     }
-
-    public float getPoints() {
-        return points;
+    public PlayerState getPlayerState(){
+        return playerState;
+    }
+    public void setMap(Map map){
+        this.map = map;
+    }
+    public void setPlayerState(PlayerState player){
+        this.playerState = player;
     }
 
-    public int getGold() {
-        return gold;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
 }
