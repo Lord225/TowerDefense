@@ -67,6 +67,7 @@ public class TowerDefense extends ApplicationAdapter
 	Button buttonFireball;
 
 	Text labelMoney;
+	Text labelBestScore;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -106,6 +107,7 @@ public class TowerDefense extends ApplicationAdapter
 		stage=new Stage(uiPort);
 
 		labelMoney = new Text(new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE,stage);
+
 		buttonStone = new Button(
 				Resources.getInstance().tower_texture,
 				new TextureRegion(Resources.getInstance().myTextureRegion),
@@ -130,7 +132,11 @@ public class TowerDefense extends ApplicationAdapter
 
 		bestScore = new BestScore();
 		bestScore.loadBest();
-
+		if(bestScore.getPlayerState() == null){
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: 0", Color.WHITE,stage);
+		}else{
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: "+bestScore.getPlayerState().getEnemiesDefeated(), Color.WHITE,stage);
+		}
 
 		buttonStone.addListener(new ClickListener(){
 			@Override
@@ -192,6 +198,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		labelMoney.setText(playerState.getGoldMessage());
 		labelMoney.draw();
+		labelBestScore.draw();
 		/*
 		//button.draw();
 		button.addListener(new ClickListener(){
