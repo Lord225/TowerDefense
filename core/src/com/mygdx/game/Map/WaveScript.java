@@ -51,8 +51,8 @@ public class WaveScript
     float current_time = 0.0f;
 
     Wave[] waves = {
-            new Wave(5, () -> new Ghost(100, 0.5f), 5.0f),
-            new Wave(10, () -> new Ghost(100, 0.6f), 1.0f),
+            new Wave(8, () -> new Ghost(20, 0.5f), 5.0f),
+            new Wave(10, () -> new Ghost(50, 0.6f), 3.0f),
             new Wave(15, () -> new Ghost(100, 0.6f), 0.75f),
             new Wave(20, () -> new Ghost(100, 0.6f), 0.5f),
             new Wave(3, () -> new Ghost(500, 0.2f), 3.0f),
