@@ -60,6 +60,8 @@ public class TowerDefense extends ApplicationAdapter
 
 	float time = 0;
 
+	Stage stage;
+
 	Button buttonStone;
 	Button buttonQStone;
 	Button buttonFireball;
@@ -101,24 +103,29 @@ public class TowerDefense extends ApplicationAdapter
 		camera.setToOrtho(false, 32*32, 32*16);
 		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
-		labelMoney = new Text(uiPort,new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE);
-		buttonStone = new Button(uiPort,
+		stage=new Stage(uiPort);
+
+		labelMoney = new Text(new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE,stage);
+		buttonStone = new Button(
 				Resources.getInstance().tower_texture,
 				new TextureRegion(Resources.getInstance().myTextureRegion),
 				new TextureRegionDrawable(Resources.getInstance().myTextureDrawable),
-				new Vector2(32*2,32*20)
+				new Vector2(32*2,32*20),
+				stage
 		);
-		buttonQStone = new Button(uiPort,
+		buttonQStone = new Button(
 				Resources.getInstance().towerQ_texture,
 				new TextureRegion(Resources.getInstance().myQTextureRegion),
 				new TextureRegionDrawable(Resources.getInstance().myQTextureDrawable),
-				new Vector2(32*4,32*20)
+				new Vector2(32*4,32*20),
+				stage
 		);
-		buttonFireball = new Button(uiPort,
+		buttonFireball = new Button(
 				Resources.getInstance().towerF_texture,
 				new TextureRegion(Resources.getInstance().myFTextureRegion),
 				new TextureRegionDrawable(Resources.getInstance().myFTextureDrawable),
-				new Vector2(32*6,32*20)
+				new Vector2(32*6,32*20),
+				stage
 		);
 
 		bestScore = new BestScore();
