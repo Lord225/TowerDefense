@@ -3,14 +3,19 @@ package Miscellaneous;
 import com.mygdx.game.Map.Map;
 import com.mygdx.game.PlayerState;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.*;
 
 public class BestScore implements Serializable {
 
     Map map;
     PlayerState playerState;
-    ObjectOutputStream save;
-    ObjectInputStream readSave;
+    //ObjectOutputStream save;
+    //ObjectInputStream readSave;
+    XMLEncoder save;
+    XMLDecoder readSave;
+
 
     public BestScore(){
 
@@ -24,37 +29,26 @@ public class BestScore implements Serializable {
     public BestScore loadBest(){
         BestScore getBestScore = null;
         try {
-            readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
+            //readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
+            readSave = new XMLDecoder(new FileInputStream(Resources.getInstance().bestScoreFileXML));
             getBestScore = (BestScore) readSave.readObject();
         }catch(java.io.FileNotFoundException e){
             System.out.println("FileNotFoundError"+ e);
-        }catch(java.io.IOException e){
-            System.out.println("ObjectInputStream error"+ e);
-        }catch(java.lang.ClassNotFoundException e){
-            System.out.println("ClassNotFoundException"+ e);
         }finally{
-            try {
                 if(readSave != null) readSave.close();
-            }catch(java.io.IOException e){
-
-            }
         }
         return getBestScore;
     }
 
     public void saveBest(BestScore bestScore) {
         try {
-            save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
+            //save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
+            save = new XMLEncoder(new FileOutputStream(Resources.getInstance().bestScoreFileXML));
             save.writeObject(bestScore);
         } catch (java.io.FileNotFoundException e) {
             System.out.println("FileOutputStream error " + e);
-        } catch (java.io.IOException e) {
-            System.out.println("ObjectOutputStream error" + e);
         } finally {
-            try {
-                if (save != null) save.close();
-            } catch (java.io.IOException e) {
-            }
+            if (save != null) save.close();
         }
     }
 
