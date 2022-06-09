@@ -56,7 +56,6 @@ public class TowerDefense extends ApplicationAdapter
 
 	PlayerState playerState;
 
-
 	float time = 0;
 
 	UiTemplate button;
@@ -124,12 +123,6 @@ public class TowerDefense extends ApplicationAdapter
 		batch.setProjectionMatrix(camera.combined);
 		handle_input();
 
-		if(time > 3)
-		{
-			map.spawnEnemy();
-			time = 0;
-		}
-
 		map.update();
 
 		batch.begin();
@@ -150,10 +143,6 @@ public class TowerDefense extends ApplicationAdapter
 	}
 
 
-	void draw_ui(){
-		button.draw();
-		labelMoney.draw();
-	}
 	void handle_input()
 	{
 		if(Gdx.input.isTouched())
