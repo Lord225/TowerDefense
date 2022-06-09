@@ -54,13 +54,13 @@ public class TowerDefense extends ApplicationAdapter
 	Sound shootArrowS, arrowHitS, deathS ;
 	BestScore bestScore;
 
-	PlayerState playerState;
+	public static PlayerState playerState;
 
 
 	float time = 0;
 
-	UiTemplate button;
-	UiTemplate labelMoney;
+	Button button;
+	Text labelMoney;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -97,7 +97,7 @@ public class TowerDefense extends ApplicationAdapter
 		camera.setToOrtho(false, 32*32, 32*16);
 		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
-		labelMoney = new Text(uiPort,new Vector2(32*20,32*20),"Obecnie posiadasz: ", Color.BLACK);
+		labelMoney = new Text(uiPort,new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE);
 		button = new Button(uiPort,
 				Resources.getInstance().tower_texture,
 				Resources.getInstance().myTextureRegion,
@@ -144,9 +144,11 @@ public class TowerDefense extends ApplicationAdapter
 			public void clicked(InputEvent event, float x, float y)
 			{
 				playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
-				System.out.println("Ustawiam budenk na stonetower");
+				//System.out.println("Ustawiam buden na stonetower");
 			}
 		});
+		labelMoney.setText(playerState.getGoldMessage());
+		labelMoney.draw();
 	}
 
 

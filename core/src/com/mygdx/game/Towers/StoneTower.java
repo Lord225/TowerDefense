@@ -14,7 +14,7 @@ import java.awt.geom.Point2D;
 public class StoneTower extends Building {
 
     public StoneTower(float range, float shootingCooldown){
-        this.cost=1;
+        this.cost=80;
         this.range = range;
         this.shootingCooldown = shootingCooldown;
         this.skin = Resources.getInstance().tower_sprite;
