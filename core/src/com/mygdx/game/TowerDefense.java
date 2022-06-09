@@ -52,7 +52,6 @@ public class TowerDefense extends ApplicationAdapter
 	SpriteBatch batch;
 	Map map;
 	Music mainTheme;
-	Sound shootArrowS, arrowHitS, deathS ;
 	BestScore bestScore;
 
 	public static PlayerState playerState;
@@ -230,9 +229,6 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void dispose () {
 		mainTheme.dispose();
-		shootArrowS.dispose();
-		arrowHitS.dispose();
-		deathS.dispose();
 		if(bestScore.getPlayerState()==null){
 			bestScore.saveBest(playerState);
 		}else {
