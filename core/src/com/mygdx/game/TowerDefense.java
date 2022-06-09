@@ -9,6 +9,7 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
@@ -56,9 +57,13 @@ public class TowerDefense extends ApplicationAdapter
 
 	public static PlayerState playerState;
 
+
 	float time = 0;
 
-	Button button;
+	Button buttonStone;
+	Button buttonQStone;
+	Button buttonFireball;
+
 	Text labelMoney;
 
 	public Vector2 get_pointing_block(){
@@ -97,13 +102,48 @@ public class TowerDefense extends ApplicationAdapter
 		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
 		labelMoney = new Text(uiPort,new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE);
-		button = new Button(uiPort,
+		buttonStone = new Button(uiPort,
 				Resources.getInstance().tower_texture,
-				Resources.getInstance().myTextureRegion,
-				Resources.getInstance().myTextureDrawable,
-				new Vector2(64,32*20)
+				new TextureRegion(Resources.getInstance().myTextureRegion),
+				new TextureRegionDrawable(Resources.getInstance().myTextureDrawable),
+				new Vector2(32*2,32*20)
 		);
-
+		buttonQStone = new Button(uiPort,
+				Resources.getInstance().towerQ_texture,
+				Resources.getInstance().myQTextureRegion,
+				Resources.getInstance().myQTextureDrawable,
+				new Vector2(32*4,32*20)
+		);
+		buttonFireball = new Button(uiPort,
+				Resources.getInstance().towerF_texture,
+				Resources.getInstance().myFTextureRegion,
+				Resources.getInstance().myFTextureDrawable,
+				new Vector2(32*6,32*20)
+		);
+		buttonStone.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
+				System.out.println("Stonetower");
+			}
+		});
+		buttonQStone.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.QSTONE_TOWER);
+				System.out.println("Qtower");
+			}
+		});
+		buttonFireball.addListener(new ClickListener(){
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.FIREBALL_TOWER);
+				System.out.println("Firetower");
+			}
+		});
 	}
 
 	@Override
@@ -131,7 +171,17 @@ public class TowerDefense extends ApplicationAdapter
 
 		batch.end();
 
-		button.draw();
+		buttonStone.draw();
+
+		buttonQStone.draw();
+
+		buttonFireball.draw();
+
+
+		labelMoney.setText(playerState.getGoldMessage());
+		labelMoney.draw();
+		/*
+		//button.draw();
 		button.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y)
@@ -142,9 +192,14 @@ public class TowerDefense extends ApplicationAdapter
 		});
 		labelMoney.setText(playerState.getGoldMessage());
 		labelMoney.draw();
+		 */
+
 	}
 
 
+	void draw_ui(){
+
+	}
 	void handle_input()
 	{
 		if(Gdx.input.isTouched())

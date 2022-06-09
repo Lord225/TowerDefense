@@ -6,7 +6,8 @@ public class BuildingGenerator
     {
         STONE_TOWER,
         QSTONE_TOWER,
-        NONE,
+        FIREBALL_TOWER,
+        NONE
     }
 
     public static Building get_stone_tower()
@@ -14,6 +15,10 @@ public class BuildingGenerator
         return new StoneTower(100, 1f);
     }
     public static Building get_Qstone_tower()
+    {
+        return new QStoneTower(80, 0.4f);
+    }
+    public static Building get_fireball_tower()
     {
         return new QStoneTower(80, 0.4f);
     }
@@ -26,6 +31,7 @@ public class BuildingGenerator
             case NONE -> null;
             case QSTONE_TOWER -> get_Qstone_tower();
             case STONE_TOWER -> get_stone_tower();
+            case FIREBALL_TOWER -> get_fireball_tower();
         };
     }
 }

@@ -20,6 +20,14 @@ public class Resources
     public TextureRegion myTextureRegion = new TextureRegion(tower_texture);
     public TextureRegionDrawable myTextureDrawable = new TextureRegionDrawable(myTextureRegion);
 
+    public Texture towerQ_texture = new Texture("textures/entity/tower.png");
+    public TextureRegion myQTextureRegion = new TextureRegion(towerQ_texture);
+    public TextureRegionDrawable myQTextureDrawable = new TextureRegionDrawable(myQTextureRegion);
+
+    public Texture towerF_texture = new Texture("textures/entity/tower.png");
+    public TextureRegion myFTextureRegion = new TextureRegion(towerF_texture);
+    public TextureRegionDrawable myFTextureDrawable = new TextureRegionDrawable(myFTextureRegion);
+
     public Music main_theme = Gdx.audio.newMusic(Gdx.files.internal("music/day.mp3"));
     public Sound shoot_arrow = Gdx.audio.newSound(Gdx.files.internal("sound_effects/shoot.mp3"));
     public Sound arrow_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/hitsound.mp3"));
