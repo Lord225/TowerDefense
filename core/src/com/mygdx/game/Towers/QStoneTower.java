@@ -11,13 +11,12 @@ import com.mygdx.game.Map.Map;
 import java.util.Vector;
 import java.awt.geom.Point2D;
 
-public class StoneTower extends Building {
-
-    public StoneTower(float range, float shootingCooldown){
-        this.cost=80;
+public class QStoneTower extends Building {
+    public QStoneTower(float range, float shootingCooldown){
         this.range = range;
         this.shootingCooldown = shootingCooldown;
         this.skin = Resources.getInstance().tower_sprite;
+        this.skin.setColor(0f,255.0f,0f,1f);
     }
     @Override
     public void update_enemies(Entity[] enemies_in_range)
@@ -31,7 +30,6 @@ public class StoneTower extends Building {
             }
         }
     }
-
     @Override
     public void update()
     {

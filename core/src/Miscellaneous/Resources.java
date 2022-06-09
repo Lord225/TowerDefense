@@ -25,6 +25,7 @@ public class Resources
     public Sound arrow_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/hitsound.mp3"));
     public Sound death_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/deathsound.mp3"));
     public File bestScoreFile = new File("bestScore.dat");
+
     private static Resources _instance;
 
     public static Resources getInstance()

@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import Miscellaneous.Resources;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
@@ -13,6 +14,7 @@ public class PlayerState
 {
     public int gold = 100;
     public Map map;
+    public int enemiesDefeated=0;
 
     public BuildingGenerator.BuildingType buildingTypeInHand = BuildingGenerator.BuildingType.NONE;
 
@@ -38,7 +40,10 @@ public class PlayerState
 
         if(building == null)
             return;
-
+        if(this.gold-building.getCost()<0){
+            building.is_alive=false;
+            return;
+        }
         if(tile.place(building)){
             this.gold -= building.getCost();
         }
@@ -50,10 +55,19 @@ public class PlayerState
     //update golda
     public String getGoldMessage()
     {
-        return String.format("Posiadasz {%d} gold'a", this.gold);
+        return String.format("Posiadasz %d gold'a", this.gold);
     }
 
+    public int getGold() {
+        return gold;
+    }
+    public void addGold(int g){
+        this.gold+=g;
+    }
 
+    private static PlayerState _instance;
 
-
+    public static PlayerState get_instance() {
+        return _instance;
+    }
 }

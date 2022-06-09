@@ -23,14 +23,13 @@ public class Text extends UiTemplate{
         labelStyle=new Label.LabelStyle();
         labelStyle.font=new BitmapFont();
         labelStyle.fontColor= color;
-
-        this.setText(text);
+        label = new Label(this.text,labelStyle);
+        stage.addActor(label);
     }
     public void setText(String text){
         this.text=text;
-        label = new Label(text,labelStyle);
+        label.setText(this.text);
         label.setPosition(position.x,position.y);
-        stage.addActor(label);
     }
 
     public String getText() {
