@@ -31,8 +31,6 @@ public abstract class Building extends Entity
         this.shootingCooldown = cooldown;
     }
 
-
-
     public float getCost() {
         return cost;
     }

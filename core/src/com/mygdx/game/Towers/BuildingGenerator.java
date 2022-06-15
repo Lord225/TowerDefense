@@ -1,5 +1,9 @@
 package com.mygdx.game.Towers;
 
+import com.mygdx.game.Towers.Impls.FireballTower;
+import com.mygdx.game.Towers.Impls.QStoneTower;
+import com.mygdx.game.Towers.Impls.StoneTower;
+
 public class BuildingGenerator
 {
     public enum BuildingType

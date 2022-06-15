@@ -5,37 +5,15 @@ import Miscellaneous.Resources;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.*;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Map.Map;
-import com.mygdx.game.Towers.Building;
-import com.mygdx.game.Towers.BuildingGenerator;
-import com.mygdx.game.Towers.StoneTower;
-import com.mygdx.game.Ui.Button;
-import com.mygdx.game.Ui.Text;
-import com.mygdx.game.Ui.Button;
-import com.mygdx.game.Ui.Text;
-import com.mygdx.game.Ui.UiTemplate;
 
-
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 
 import static com.badlogic.gdx.math.MathUtils.floor;
 
