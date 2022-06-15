@@ -5,6 +5,26 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Towers.Building;
 
+/**
+ * <h1>Tile</h1>
+ * Tile represents an tile on the map. You can place an <b>Building</b> on tile.
+ * This class is used inside <b>Map</b> class.
+ *
+ * <h1>Example</h1>
+ *
+ * <pre>{@code
+ * var tile = map.get_tile(0, 0); // Get tile from map
+ *
+ * var state = tile.place(building); // Try placing an building
+ *
+ * if(state == false)
+ *     building.is_alive = false; // Destroy building if cannot place on thile
+ *
+ * }</pre>
+ *
+ * @see Building
+ * @see Map
+ */
 public class Tile extends Sprite
 {
     private final Vector2 position = new Vector2();
@@ -21,6 +41,11 @@ public class Tile extends Sprite
         return position.add(TILE_SIZE/2, TILE_SIZE/2);
     }
 
+    /**
+     * Try to place an building on this tile. Returns <b>false</b> if it is imposile to place building.
+     * @param building_to_place - target instance of an building
+     * @return <b>true</b> for succes
+     */
     public boolean place(Building building_to_place)
     {
         if(placed_building != null)
@@ -37,11 +62,14 @@ public class Tile extends Sprite
         return true;
     }
 
+    /**
+     * Returns building that is currently on this tile. Returns <b>null</b> is there is no buidling.
+     * @return building on this tile
+     */
     public Building get_building()
     {
         return placed_building;
     }
-
 
     public Tile(Sprite texture, float posX, float posY, boolean isPlacable)
     {

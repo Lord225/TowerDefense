@@ -14,6 +14,67 @@ import com.mygdx.game.Towers.Building;
 import java.awt.geom.Point2D;
 import java.util.Arrays;
 
+/**
+ * <h1>Map</h1>
+ * Class that represents State of the game and its logic. Including:
+ * <lu>
+ *     <li><b>Tiles</b></li>
+ *     <li><b>Enteties</b> - Including Placed buildings, Routes, Enemies, Projectiles</li>
+ *     <li><b>GameScript</b></li>
+ * </lu>
+ * You can load an map preset from {@code json} file with this format
+ * <pre>{@code
+ * {
+ *   "textures": [
+ *      "path/to/textures.png"
+ *   ],
+ *   "placable":
+ *   [
+ *     false, // True for placable type, by index in textures
+ *     true,  // False for non-placable type
+ *   ],
+ *   // Map layout as 2d array (32, 20) with indexed textures
+ *   "layout": [
+ *     [0,1,1,1,1,1,1,1,1,4,3,3,3,4,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+ *     [0,1,1,1,1,1,1,1,1,3,2,2,3,3,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+ *     [0,1,1,1,1,1,1,1,1,3,2,2,2,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1],
+ *     [0,0,0,0,0,0,0,0,1,3,3,2,2,3,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1],
+ *     [1,1,1,1,1,1,1,0,1,3,2,2,2,3,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1],
+ *     [1,1,1,1,1,1,1,0,1,4,2,2,3,3,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1],
+ *     [1,1,1,1,1,1,1,0,1,3,3,3,3,1,1,0,1,1,1,0,0,0,0,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,0,0,0,0,0,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
+ *     [1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1],
+ *     [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+ *     [1,1,1,1,1,1,1,1,1,1,1,1,1,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+ *   ],
+ *   // Route (list of vertexes) for enemies.
+ *   "route":[
+ *     [0, 0],
+ *     [0, 96],
+ *     [224, 96],
+ *     [224, 224],
+ *     [96,224],
+ *     [96,320],
+ *     [480,320],
+ *     [480,64],
+ *     [896,64],
+ *     [896,416],
+ *     [736,416],
+ *     [736,192],
+ *     [608,192],
+ *     [608,416],
+ *     [416,416],
+ *     [416,480]
+ *   ]
+ * }
+ *
+ * }</pre>
+ */
 public class Map extends Sprite
 {
     Tile[][] tiles;
@@ -21,6 +82,10 @@ public class Map extends Sprite
     public EntityMenager menager;
     public WaveScript script;
 
+    /**
+     * Creates new map with given preset
+     * @param path path to json file with map data
+     */
     public Map(String path)
     {
         this.tiles = new Tile[16][32];
@@ -62,6 +127,11 @@ public class Map extends Sprite
         this.route.set_on_arrival_callback(enemy -> System.out.println("Enemy hitted target"));
     }
 
+    /**
+     * @param x position on map
+     * @param y position on map
+     * @return Tile of index (x, y)
+     */
     public Tile get_tile_by_cords(int x, int y)
     {
         return tiles[x][y];

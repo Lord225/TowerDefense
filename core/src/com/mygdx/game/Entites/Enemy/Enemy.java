@@ -20,7 +20,8 @@ public abstract class Enemy extends Entity
         this.skin.setColor(255.0f,0f,0f,1f);
     }
     @Override
-    public void update(){
+    public void update()
+    {
         timeSeconds += Gdx.graphics.getDeltaTime();
         if(timeSeconds > period){
             timeSeconds-=period;
