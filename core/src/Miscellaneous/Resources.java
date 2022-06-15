@@ -40,7 +40,6 @@ public class Resources
     public Sound fireball_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/fireball.mp3"));
 
     public File bestScoreFile = new File("bestScore.dat");
-    public File bestScoreFileXML = new File("bestScore.xml");
     private static Resources _instance;
 
     public static Resources getInstance()

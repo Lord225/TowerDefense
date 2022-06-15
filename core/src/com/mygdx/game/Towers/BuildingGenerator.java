@@ -1,5 +1,8 @@
 package com.mygdx.game.Towers;
 
+/**
+ * Class used for generating the building (label usage). It contains methods returning tower objects.
+ */
 public class BuildingGenerator
 {
     public enum BuildingType

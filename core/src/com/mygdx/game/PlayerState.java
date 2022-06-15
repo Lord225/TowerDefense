@@ -9,7 +9,6 @@ import com.mygdx.game.Towers.BuildingGenerator;
 
 import java.io.Serializable;
 
-import static com.badlogic.gdx.math.MathUtils.floor;
 
 /**
  * This is the class which keeps player's statistics (health, gold, enemies defeated, map) and is being used for serialization
@@ -17,7 +16,7 @@ import static com.badlogic.gdx.math.MathUtils.floor;
 
 public class PlayerState implements Serializable
 {
-    public int gold = 1000; //100
+    public int gold = 100;
     public int health=10;
     public transient Map map;
     public int enemiesDefeated=0;
@@ -27,7 +26,7 @@ public class PlayerState implements Serializable
 
     /**
      * Constructor for PlayerState class
-     * @param map
+     * @param map it's an map object
      */
     public PlayerState(Map map)
     {
@@ -47,7 +46,7 @@ public class PlayerState implements Serializable
 
     /**
      * Method used for setting tower in the hand, it takes BuildingGenerator type which was taken by the player as parameter
-     * @param type
+     * @param type BuildingGenerator object
      */
     public void setTower(BuildingGenerator.BuildingType type)
     {
@@ -56,7 +55,7 @@ public class PlayerState implements Serializable
 
     /**
      * Method used for placing picked building on selected tile, takes Vector2 position as a parameter
-     * @param blockPosition
+     * @param blockPosition Vector2 object (position)
      */
     public void onPlaceBuilding(Vector2 blockPosition)
     {
@@ -87,9 +86,6 @@ public class PlayerState implements Serializable
         return String.format("Posiadasz %d gold'a", this.gold);
     }
 
-    public int getGold() {
-        return gold;
-    }
     public void addGold(int g){
         this.gold+=g;
     }
@@ -97,9 +93,4 @@ public class PlayerState implements Serializable
         return this.enemiesDefeated;
     }
 
-    private static PlayerState _instance;
-
-    public static PlayerState get_instance() {
-        return _instance;
-    }
 }
