@@ -39,7 +39,7 @@ public abstract class Entity extends Sprite {
         return this.skin;
     }
     public Vector2 getEntityPos(){
-        return this.position;
+        return new Vector2(this.position);
     }
     public void setEntityPos(Vector2 position){
         this.position = position;

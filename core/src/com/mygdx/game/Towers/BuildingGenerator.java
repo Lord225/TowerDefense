@@ -20,7 +20,7 @@ public class BuildingGenerator
     }
     public static Building get_fireball_tower()
     {
-        return new QStoneTower(80, 0.4f);
+        return new FireballTower(120, 3.0f, 50.0f);
     }
 
 
