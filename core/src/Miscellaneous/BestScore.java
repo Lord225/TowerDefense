@@ -6,21 +6,24 @@ import com.mygdx.game.PlayerState;
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.*;
-
+/**
+ * Class used for serialization. It is responsible for keeping the best score (PlayerState object) based on enemies killed in file (.dat)
+ */
 public class BestScore implements Serializable {
 
-    Map map;
+    /**
+     * Parameters used for handling the file and keeping the playerState
+     */
     PlayerState playerState;
     ObjectOutputStream save;
     ObjectInputStream readSave;
-    //XMLEncoder save;
-   // XMLDecoder readSave;
 
-
+    /**
+     * Used for loading best score (PlayerState object) from file (.dat)
+     */
     public void loadBest() {
         try {
             readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
-            //readSave = new XMLDecoder(new FileInputStream(Resources.getInstance().bestScoreFileXML));
             this.playerState = (PlayerState) readSave.readObject();
         } catch (FileNotFoundException | ClassNotFoundException e) {
             System.out.println("FileNotFoundError" + e);
@@ -34,11 +37,12 @@ public class BestScore implements Serializable {
             }
         }
     }
-
+    /**
+     * Used for saving the best score (PlayerState object) into file (.dat)
+     */
     public void saveBest(PlayerState playerState) {
         try {
             save = new ObjectOutputStream(new FileOutputStream(Resources.getInstance().bestScoreFile));
-            //save = new XMLEncoder(new FileOutputStream(Resources.getInstance().bestScoreFileXML));
             save.writeObject(playerState);
         } catch (IOException e) {
             System.out.println("FileOutputStream error " + e);
@@ -51,14 +55,8 @@ public class BestScore implements Serializable {
         }
     }
 
-    public Map getMap() {
-        return map;
-    }
     public PlayerState getPlayerState(){
         return playerState;
-    }
-    public void setMap(Map map){
-        this.map = map;
     }
 
 

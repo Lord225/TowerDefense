@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import java.io.File;
+/**
+ * Singleton class which keeps references to objects responsible for skins/sound effects used in our game
+ */
 
 public class Resources
 {
