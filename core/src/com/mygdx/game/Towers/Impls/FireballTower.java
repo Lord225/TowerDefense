@@ -9,12 +9,20 @@ import com.mygdx.game.Entites.Projectiles.FireBall;
 import com.mygdx.game.Towers.Building;
 
 import java.util.Random;
-
+/**
+ * FireballTower, slowest tower (extends Building). It has the highest cost, highest range and cooldown. It is able to hit multiple opponents
+ */
 public class FireballTower extends Building
 {
     static Random rnd = new Random();
     float fireballrange = 1.0f;
 
+    /**
+     * Constructor for QStoneTower class
+     * @param range turret's range
+     * @param shootingCooldown turret's cooldown
+     * @param fireballrange range of fireballs
+     */
     public FireballTower(float range, float shootingCooldown, float fireballrange){
         this.cost = 300;
         this.setRange(range);
@@ -24,13 +32,20 @@ public class FireballTower extends Building
         this.fireballrange = fireballrange;
     }
 
+    /**
+     * @see Entity
+     */
     @Override
     public void update()
     {
         currentCooldown += Gdx.graphics.getDeltaTime();
     }
 
-
+    /**
+     * It is different from other towers, it randomly targets enemies that are in range for the fireball attack
+     * @see Building
+     * @param enemies_in_range array with enemies
+     */
     @Override
     public void update_enemies(Entity[] enemies_in_range)
     {

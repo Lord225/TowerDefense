@@ -109,11 +109,6 @@ public class TowerDefense extends ApplicationAdapter
 			Gdx.app.exit();
 		}
 	}
-
-
-	void draw_ui(){
-
-	}
 	void handle_input()
 	{
 		if(Gdx.input.isTouched())
@@ -121,7 +116,6 @@ public class TowerDefense extends ApplicationAdapter
 			playerState.onPlaceBuilding(get_pointing_block());
 		}
 	}
-
 	@Override
 	public void dispose () {
 		mainTheme.dispose();

@@ -1,19 +1,13 @@
 package Miscellaneous;
 
-import com.mygdx.game.Map.Map;
 import com.mygdx.game.PlayerState;
-
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
 import java.io.*;
+
 /**
  * Class used for serialization. It is responsible for keeping the best score (PlayerState object) based on enemies killed in file (.dat)
  */
 public class BestScore implements Serializable {
 
-    /**
-     * Parameters used for handling the file and keeping the playerState
-     */
     PlayerState playerState;
     ObjectOutputStream save;
     ObjectInputStream readSave;
@@ -58,6 +52,4 @@ public class BestScore implements Serializable {
     public PlayerState getPlayerState(){
         return playerState;
     }
-
-
 }
