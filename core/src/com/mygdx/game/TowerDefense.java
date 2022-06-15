@@ -51,6 +51,9 @@ public class TowerDefense extends ApplicationAdapter
 		return new Vector2(-1,-1);
 	}
 
+	/**
+	 * Main method used for creating every necessary object
+	 */
 	@Override
 	public void create () {
 		mainTheme = Resources.getInstance().main_theme;
@@ -82,7 +85,10 @@ public class TowerDefense extends ApplicationAdapter
 		gamePort.update(width, height);
 		uiPort.update(width,height);
 	}
-	
+
+	/**
+	 * Method used for updating, rendering and drawing objects
+	 */
 	@Override
 	public void render()
 	{
@@ -117,6 +123,9 @@ public class TowerDefense extends ApplicationAdapter
 		}
 	}
 	@Override
+	/**
+	 * Method used for serialization and disposing main theme
+	 */
 	public void dispose () {
 		mainTheme.dispose();
 		if(bestScore.getPlayerState()==null){
