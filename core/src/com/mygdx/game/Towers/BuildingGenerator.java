@@ -1,5 +1,8 @@
 package com.mygdx.game.Towers;
 
+import com.mygdx.game.Towers.Impls.FireballTower;
+import com.mygdx.game.Towers.Impls.StoneTower;
+
 /**
  * Class used for generating the building (label usage). It contains methods returning tower objects.
  */
@@ -19,7 +22,7 @@ public class BuildingGenerator
     }
     public static Building get_Qstone_tower()
     {
-        return new QStoneTower(80, 0.4f);
+        return new com.mygdx.game.Towers.QStoneTower(80, 0.4f);
     }
     public static Building get_fireball_tower()
     {
