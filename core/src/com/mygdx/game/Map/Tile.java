@@ -37,9 +37,6 @@ public class Tile extends Sprite
     public Vector2 getPosition() {
         return position;
     }
-    public Vector2 getMiddlePosition() {
-        return position.add(TILE_SIZE/2, TILE_SIZE/2);
-    }
 
     /**
      * Try to place an building on this tile. Returns <b>false</b> if it is imposile to place building.

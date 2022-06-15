@@ -1,6 +1,5 @@
 package com.mygdx.game.Entites.Projectiles;
 
-import Miscellaneous.Resources;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Entites.Enemy.Enemy;

@@ -1,10 +1,8 @@
 package com.mygdx.game.Ui;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 /**
  * This class is template for creating UI elements

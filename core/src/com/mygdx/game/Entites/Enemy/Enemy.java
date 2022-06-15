@@ -47,10 +47,6 @@ public abstract class Enemy extends Entity
         return this.speed;
     }
 
-    public void setSpeed(int newVal){
-        this.speed = this.speed - newVal;
-    }
-
     public float getProgress() {
         return progress;
     }
