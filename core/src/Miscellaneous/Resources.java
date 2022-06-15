@@ -15,6 +15,7 @@ public class Resources
     public Sprite ghost_sprite = new Sprite(new Texture("textures/enemy/ghost.png"));
     public Sprite arrow_sprite = new Sprite(new Texture("textures/entity/arrow.png"));
     public Sprite tower_sprite = new Sprite(new Texture("textures/entity/tower.png"));
+    public Sprite fireball_sprite = new Sprite(new Texture("textures/entity/fireball.png"));
 
     public Texture tower_texture = new Texture("textures/entity/tower.png");
     public TextureRegion myTextureRegion = new TextureRegion(tower_texture);
