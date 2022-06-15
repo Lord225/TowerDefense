@@ -25,7 +25,7 @@ public class Resources
     public TextureRegion myQTextureRegion = new TextureRegion(towerQ_texture);
     public TextureRegionDrawable myQTextureDrawable = new TextureRegionDrawable(myQTextureRegion);
 
-    public Texture towerF_texture = new Texture("textures/entity/tower.png");
+    public Texture towerF_texture = new Texture("textures/entity/redtower.png");
     public TextureRegion myFTextureRegion = new TextureRegion(towerF_texture);
     public TextureRegionDrawable myFTextureDrawable = new TextureRegionDrawable(myFTextureRegion);
 
