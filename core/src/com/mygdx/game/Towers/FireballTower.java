@@ -20,9 +20,27 @@ public class FireballTower extends Building
         this.range = range;
         this.shootingCooldown = shootingCooldown;
         this.skin = new Sprite(Resources.getInstance().tower_sprite);
-        this.skin.setColor(0f,255.0f,0f,1f);
+        this.skin.setColor(255.0f,0f,0f,1f);
         this.fireballrange = fireballrange;
     }
+
+    @Override
+    public void update_enemies(Entity[] enemies_in_range)
+    {
+        if(enemies_in_range.length == 0)
+            return;
+
+        if(currentCooldown >= shootingCooldown)
+        {
+            var target = enemies_in_range[rnd.nextInt(enemies_in_range.length)];
+
+            if (target instanceof Enemy enemy) {
+                FireBall.emmit(enemy, tile, fireballrange);
+                currentCooldown = 0;
+            }
+        }
+    }
+
     @Override
     public void update()
     {

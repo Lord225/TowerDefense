@@ -15,7 +15,7 @@ public class FireBall extends Projectile
 
     public static FireBall emmit(Enemy target, Tile start, float fireballrange)
     {
-        Resources.getInstance().shoot_arrow.play();
+        Resources.getInstance().fireball_sound.play();
         return new FireBall(target, start.getPosition(), 0.01f, fireballrange);
     }
 
