@@ -66,7 +66,6 @@ public class Map extends Sprite
         this.route.set_on_arrival_callback(enemy -> System.out.println("Enemy hitted target"));
     }
 
-
     public Tile get_tile_by_cords(int x, int y)
     {
         return tiles[x][y];

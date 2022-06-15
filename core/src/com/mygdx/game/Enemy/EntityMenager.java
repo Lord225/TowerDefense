@@ -16,6 +16,11 @@ public class EntityMenager implements Serializable
         default_menager.addEntity(entity);
     }
 
+    public static EntityMenager getDefaultMenager()
+    {
+        return default_menager;
+    }
+
     public void addEntity(Entity entity)
     {
         if(entity != null && !this.entites.contains(entity)) {

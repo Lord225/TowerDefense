@@ -15,6 +15,7 @@ public class Resources
     public Sprite ghost_sprite = new Sprite(new Texture("textures/enemy/ghost.png"));
     public Sprite arrow_sprite = new Sprite(new Texture("textures/entity/arrow.png"));
     public Sprite tower_sprite = new Sprite(new Texture("textures/entity/tower.png"));
+    public Sprite fireball_sprite = new Sprite(new Texture("textures/entity/fireball.png"));
 
     public Texture tower_texture = new Texture("textures/entity/tower.png");
     public TextureRegion myTextureRegion = new TextureRegion(tower_texture);
@@ -32,6 +33,8 @@ public class Resources
     public Sound shoot_arrow = Gdx.audio.newSound(Gdx.files.internal("sound_effects/shoot.mp3"));
     public Sound arrow_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/hitsound.mp3"));
     public Sound death_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/deathsound.mp3"));
+    public Sound castle_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/castle_hit.mp3"));
+
     public File bestScoreFile = new File("bestScore.dat");
     public File bestScoreFileXML = new File("bestScore.xml");
     private static Resources _instance;

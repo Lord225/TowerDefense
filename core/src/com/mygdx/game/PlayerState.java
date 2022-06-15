@@ -16,7 +16,7 @@ import static com.badlogic.gdx.math.MathUtils.floor;
 
 public class PlayerState implements Serializable
 {
-    public int gold = 100;
+    public int gold = 100; //100
     public int health=10;
     public transient Map map;
     public int enemiesDefeated=0;
@@ -31,6 +31,7 @@ public class PlayerState implements Serializable
             @Override
             public void arrival_event(Entity enemy) {
                 health--;
+                Resources.getInstance().castle_hit_sound.play();
                 if(health==0){
                     isDead=true;
                 }

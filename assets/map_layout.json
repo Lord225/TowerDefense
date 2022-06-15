@@ -6,12 +6,14 @@
     "textures/tiles/sand.png",
     "textures/tiles/cactus_top.png",
     "textures/tiles/melon_top.png",
-    "textures/tiles/flowering_azalea_top.png"
+    "textures/tiles/flowering_azalea_top.png",
+    "textures/tiles/castle_on_green.png"
   ],
   "placable":
   [
     false,
     true,
+    false,
     false,
     false,
     false,
@@ -34,7 +36,7 @@
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,0,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-    [1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,7,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
   ],
   "route":[
     [0, 0],

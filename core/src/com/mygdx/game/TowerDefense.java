@@ -41,6 +41,11 @@ import java.io.ObjectOutputStream;
 
 import static com.badlogic.gdx.math.MathUtils.floor;
 
+/**
+ * @author Maciej Złotorowicz, Adrian Rosół, Oskar Ożóg
+ * This is the main class which combines all others so it can be run in programme
+ */
+
 public class TowerDefense extends ApplicationAdapter
 {
 	OrthographicCamera camera;
