@@ -161,7 +161,7 @@ public class TowerDefense extends ApplicationAdapter
 			{
 				System.out.println("Enter " + event.toString());
 				labelCostOfTower.setText("Koszt:80 Gold");
-
+				labelCostOfTower.setPos(new Vector2(32*2,32*19));
 				labelCostOfTower.setVisibility(true);
 				last = event.getType();
 			}
@@ -175,19 +175,59 @@ public class TowerDefense extends ApplicationAdapter
 		});
 
 		buttonQStone.addListener(new ClickListener(){
+			private InputEvent.Type last;
+
 			@Override
 			public void clicked(InputEvent event, float x, float y)
 			{
 				playerState.setTower(BuildingGenerator.BuildingType.QSTONE_TOWER);
-				System.out.println("Qtower");
+				//System.out.println("Clicked " + event.toString());
+
+				last = event.getType();
+			}
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
+			{
+				//System.out.println("Enter " + event.toString());
+				labelCostOfTower.setText("Koszt:120 Gold");
+				labelCostOfTower.setPos(new Vector2(32*4,32*19));
+				labelCostOfTower.setVisibility(true);
+				last = event.getType();
+			}
+			@Override
+			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
+			{
+				//System.out.println("Exit " + event.getType().toString());
+				labelCostOfTower.setVisibility(false);
+				last = event.getType();
 			}
 		});
 		buttonFireball.addListener(new ClickListener(){
+			private InputEvent.Type last;
+
 			@Override
 			public void clicked(InputEvent event, float x, float y)
 			{
 				playerState.setTower(BuildingGenerator.BuildingType.FIREBALL_TOWER);
-				System.out.println("Firetower");
+				//System.out.println("Clicked " + event.toString());
+
+				last = event.getType();
+			}
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
+			{
+				//System.out.println("Enter " + event.toString());
+				labelCostOfTower.setText("Koszt:300 Gold");
+				labelCostOfTower.setPos(new Vector2(32*6,32*19));
+				labelCostOfTower.setVisibility(true);
+				last = event.getType();
+			}
+			@Override
+			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
+			{
+				//System.out.println("Exit " + event.getType().toString());
+				labelCostOfTower.setVisibility(false);
+				last = event.getType();
 			}
 		});
 	}
