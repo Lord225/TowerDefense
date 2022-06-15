@@ -31,6 +31,7 @@ public class PlayerState implements Serializable
             @Override
             public void arrival_event(Entity enemy) {
                 health--;
+                Resources.getInstance().castle_hit_sound.play();
                 if(health==0){
                     isDead=true;
                 }
