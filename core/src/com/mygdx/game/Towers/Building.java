@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Enemy.Arrow;
 import com.mygdx.game.Enemy.Enemy;
 import com.mygdx.game.Enemy.Entity;
 import com.mygdx.game.Map.Map;
@@ -28,11 +29,31 @@ public abstract class Building extends Entity
 
     public Tile tile = null;
 
-    public abstract void update_enemies(Entity[] enemies_in_range); // przeciwnicy w zasiegu (sprawdzenie)
-    public abstract float getRange(); // range wiezyczki
-    public abstract void setRange(float range);
-    public abstract float getCooldown();
-    public abstract void setCooldown(float cooldown);
+    public void update_enemies(Entity[] enemies_in_range) //przeciwnicy w zasiegu (sprawdzenie)
+    {
+        if(currentCooldown >= shootingCooldown) {
+            var target = this.findClosestEnemy(enemies_in_range);
+
+            if (target instanceof Enemy enemy) {
+                Arrow.emmit(enemy, tile);
+                currentCooldown = 0;
+            }
+        }
+    }
+    public float getRange() {
+        return this.range;
+    }// range wiezyczki
+    public void setRange(float range) {
+        this.range = range;
+    }
+    public float getCooldown() {
+        return this.shootingCooldown;
+    }
+    public void setCooldown(float cooldown) {
+        this.shootingCooldown = cooldown;
+    }
+
+
 
     public float getCost() {
         return cost;
