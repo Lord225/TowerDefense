@@ -2,7 +2,9 @@ package com.mygdx.game;
 
 import Miscellaneous.BestScore;
 import Miscellaneous.Resources;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -14,6 +16,8 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.mygdx.game.Towers.BuildingGenerator;
 import com.mygdx.game.Ui.Button;
 import com.mygdx.game.Ui.Text;
+
+import java.util.concurrent.TimeUnit;
 
 public class UITowerDef
 {
@@ -30,7 +34,6 @@ public class UITowerDef
     Text labelBestScore;
 
     PlayerState playerState;
-
 
     public void create(Viewport uiPort, BestScore bestScore, PlayerState playerState)
     {
@@ -89,7 +92,7 @@ public class UITowerDef
             {
                 System.out.println("Enter " + event.toString());
                 labelCostOfTower.setText("Koszt:80 Gold");
-
+                labelCostOfTower.setPos(new Vector2(32*2,32*19));
                 labelCostOfTower.setVisibility(true);
                 last = event.getType();
             }
