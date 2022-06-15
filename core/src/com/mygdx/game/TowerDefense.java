@@ -67,13 +67,11 @@ public class TowerDefense extends ApplicationAdapter
 	Button buttonQStone;
 	Button buttonFireball;
 
+	Text labelCostOfTower;
+
+	Text labelScore;
 	Text labelMoney;
 	Text labelBestScore;
-	Text labelCostOfTower;
-	Text labelCostOfQTower;
-	Text labelCostOfFireTower;
-
-	static InputEvent lastEvent=new InputEvent();
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -92,24 +90,146 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void create () {
 		mainTheme = Resources.getInstance().main_theme;
-
 		mainTheme.setLooping(true);
 		mainTheme.setVolume(0.075F);
 
 		camera = new OrthographicCamera();
 		map = new Map("map_layout.json");
-		batch = new SpriteBatch();
+		playerState = new PlayerState(map);
 
-		playerState=new PlayerState(map);
+		batch = new SpriteBatch();
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		uiPort= new ExtendViewport(32*32 , 32*16);
 		camera.setToOrtho(false, 32*32, 32*16);
 		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
-		stage=new Stage(uiPort);
+		stage = new Stage(uiPort);
 
-		draw_ui();
+		labelMoney = new Text(new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE,stage);
+
+		buttonStone = new Button(
+				Resources.getInstance().tower_texture,
+				new TextureRegion(Resources.getInstance().myTextureRegion),
+				new TextureRegionDrawable(Resources.getInstance().myTextureDrawable),
+				new Vector2(32*2,32*20),
+				stage
+		);
+		buttonQStone = new Button(
+				Resources.getInstance().towerQ_texture,
+				new TextureRegion(Resources.getInstance().myQTextureRegion),
+				new TextureRegionDrawable(Resources.getInstance().myQTextureDrawable),
+				new Vector2(32*4,32*20),
+				stage
+		);
+		buttonFireball = new Button(
+				Resources.getInstance().towerF_texture,
+				new TextureRegion(Resources.getInstance().myFTextureRegion),
+				new TextureRegionDrawable(Resources.getInstance().myFTextureDrawable),
+				new Vector2(32*6,32*20),
+				stage
+		);
+
+		labelScore = new Text(new Vector2(32*14,32*21),"Aktualny wynik: 0", Color.WHITE, stage);
+
+		bestScore = new BestScore();
+		bestScore.loadBest();
+
+		if(bestScore.getPlayerState() == null){
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: 0", Color.WHITE,stage);
+		}else{
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: " + bestScore.getPlayerState().getEnemiesDefeated(), Color.WHITE,stage);
+		}
+
+		labelCostOfTower = new Text(new Vector2(32*2,32*19),"NA", Color.WHITE,stage);
+		labelCostOfTower.setVisibility(false);
+
+		buttonStone.addListener(new ClickListener()
+		{
+			private InputEvent.Type last;
+
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
+				System.out.println("Clicked " + event.toString());
+
+				last = event.getType();
+			}
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
+			{
+				System.out.println("Enter " + event.toString());
+				labelCostOfTower.setText("Koszt:80 Gold");
+				labelCostOfTower.setPos(new Vector2(32*2,32*19));
+				labelCostOfTower.setVisibility(true);
+				last = event.getType();
+			}
+			@Override
+			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
+			{
+				System.out.println("Exit " + event.getType().toString());
+				labelCostOfTower.setVisibility(false);
+				last = event.getType();
+			}
+		});
+
+		buttonQStone.addListener(new ClickListener(){
+			private InputEvent.Type last;
+
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.QSTONE_TOWER);
+				//System.out.println("Clicked " + event.toString());
+
+				last = event.getType();
+			}
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
+			{
+				//System.out.println("Enter " + event.toString());
+				labelCostOfTower.setText("Koszt:120 Gold");
+				labelCostOfTower.setPos(new Vector2(32*4,32*19));
+				labelCostOfTower.setVisibility(true);
+				last = event.getType();
+			}
+			@Override
+			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
+			{
+				//System.out.println("Exit " + event.getType().toString());
+				labelCostOfTower.setVisibility(false);
+				last = event.getType();
+			}
+		});
+		buttonFireball.addListener(new ClickListener(){
+			private InputEvent.Type last;
+
+			@Override
+			public void clicked(InputEvent event, float x, float y)
+			{
+				playerState.setTower(BuildingGenerator.BuildingType.FIREBALL_TOWER);
+				//System.out.println("Clicked " + event.toString());
+
+				last = event.getType();
+			}
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
+			{
+				//System.out.println("Enter " + event.toString());
+				labelCostOfTower.setText("Koszt:300 Gold");
+				labelCostOfTower.setPos(new Vector2(32*6,32*19));
+				labelCostOfTower.setVisibility(true);
+				last = event.getType();
+			}
+			@Override
+			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
+			{
+				//System.out.println("Exit " + event.getType().toString());
+				labelCostOfTower.setVisibility(false);
+				last = event.getType();
+			}
+		});
 	}
 
 	@Override
@@ -139,124 +259,27 @@ public class TowerDefense extends ApplicationAdapter
 		batch.end();
 
 		buttonStone.draw();
+
 		buttonQStone.draw();
+
 		buttonFireball.draw();
 
 
 		labelMoney.setText(playerState.getGoldMessage());
 		labelMoney.draw();
+
+		labelScore.setText(String.format("Aktualny wynik: %d", playerState.enemiesDefeated));
+
 		labelBestScore.draw();
+
 		if(playerState.isDead){
 			Gdx.app.exit();
 		}
 	}
 
+
 	void draw_ui(){
 
-		labelMoney = new Text(new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE,stage);
-
-		bestScore = new BestScore();
-		bestScore.loadBest();
-		if(bestScore.getPlayerState() == null){
-			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: 0", Color.WHITE,stage);
-		}else{
-			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: "+bestScore.getPlayerState().getEnemiesDefeated(), Color.WHITE,stage);
-		}
-
-		buttonStone = new Button(
-				Resources.getInstance().tower_texture,
-				new TextureRegion(Resources.getInstance().myTextureRegion),
-				new TextureRegionDrawable(Resources.getInstance().myTextureDrawable),
-				new Vector2(32*2,32*20),
-				stage
-		);
-		buttonQStone = new Button(
-				Resources.getInstance().towerQ_texture,
-				new TextureRegion(Resources.getInstance().myQTextureRegion),
-				new TextureRegionDrawable(Resources.getInstance().myQTextureDrawable),
-				new Vector2(32*4,32*20),
-				stage
-		);
-		buttonFireball = new Button(
-				Resources.getInstance().towerF_texture,
-				new TextureRegion(Resources.getInstance().myFTextureRegion),
-				new TextureRegionDrawable(Resources.getInstance().myFTextureDrawable),
-				new Vector2(32*6,32*20),
-				stage
-		);
-
-		buttonStone.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y)
-			{
-					playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
-					System.out.println("Stonetower");
-			}
-		});
-		buttonStone.addListener(new ClickListener(){
-			@Override
-			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
-			{
-					System.out.println("WSZEDLEM");
-					labelCostOfTower = new Text(new Vector2(32*2,32*19),"Koszt:80 Gold", Color.WHITE,stage);
-			}
-		});
-		buttonStone.addListener(new ClickListener(){
-			@Override
-			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
-			{
-					System.out.println("WYSZEDLEM");
-					labelCostOfTower.setVisibility(false);
-			}
-		});
-
-		//QStone
-
-		buttonQStone.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y)
-			{
-				playerState.setTower(BuildingGenerator.BuildingType.QSTONE_TOWER);
-				System.out.println("Qtower");
-			}
-		});
-		buttonQStone.addListener(new ClickListener(){
-			@Override
-			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
-			{
-				labelCostOfTower = new Text(new Vector2(32*4,32*19),"Koszt:120 Gold", Color.WHITE,stage);
-			}
-		});
-		buttonQStone.addListener(new ClickListener(){
-			@Override
-			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
-			{
-				labelCostOfTower.setVisibility(false);
-			}
-		});
-		//FIREBALL
-		buttonFireball.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y)
-			{
-				playerState.setTower(BuildingGenerator.BuildingType.FIREBALL_TOWER);
-				System.out.println("Firetower");
-			}
-		});
-		buttonFireball.addListener(new ClickListener(){
-			@Override
-			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
-			{
-				labelCostOfTower = new Text(new Vector2(32*6,32*19),"Koszt:240 Gold", Color.WHITE,stage);
-			}
-		});
-		buttonFireball.addListener(new ClickListener(){
-			@Override
-			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
-			{
-				labelCostOfTower.setVisibility(false);
-			}
-		});
 	}
 	void handle_input()
 	{

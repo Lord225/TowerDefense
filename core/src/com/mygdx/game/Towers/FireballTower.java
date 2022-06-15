@@ -16,13 +16,20 @@ public class FireballTower extends Building
     float fireballrange = 1.0f;
 
     public FireballTower(float range, float shootingCooldown, float fireballrange){
-        this.cost = 240;
+        this.cost = 300;
         this.range = range;
         this.shootingCooldown = shootingCooldown;
         this.skin = new Sprite(Resources.getInstance().tower_sprite);
         this.skin.setColor(255.0f,0f,0f,1f);
         this.fireballrange = fireballrange;
     }
+
+    @Override
+    public void update()
+    {
+        currentCooldown += Gdx.graphics.getDeltaTime();
+    }
+
 
     @Override
     public void update_enemies(Entity[] enemies_in_range)
@@ -40,11 +47,4 @@ public class FireballTower extends Building
             }
         }
     }
-
-    @Override
-    public void update()
-    {
-        currentCooldown += Gdx.graphics.getDeltaTime();
-    }
-
 }

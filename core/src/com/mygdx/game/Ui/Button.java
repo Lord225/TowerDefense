@@ -12,6 +12,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/**
+ * Class for creating Buttons elements in UI
+ */
 public class Button extends UiTemplate{
     Texture myTexture;
     TextureRegion myTextureRegion;
@@ -19,6 +22,15 @@ public class Button extends UiTemplate{
     ImageButton button;
     Vector2 position;
 
+    /**
+     * Constructor for creating button with texture
+     * Adding actor for stage
+     * @param t Texture to cover button
+     * @param tr TextureRegion to establish region of our button
+     * @param trd TextureDrawableRegion Used for creating tints etc
+     * @param pos Position of Button according to X and Y cordinates
+     * @param stage Stage for creating actor with button in it
+     */
     public Button(Texture t, TextureRegion tr, TextureRegionDrawable trd, Vector2 pos, Stage stage) {
         super(stage);
         this.myTexture = t;
@@ -30,16 +42,6 @@ public class Button extends UiTemplate{
         button.setPosition(position.x,position.y);
         Gdx.input.setInputProcessor(stage);
         stage.addActor(button);
-        /*
-        button.addListener(new ClickListener()
-        {
-            @Override
-            public void clicked(InputEvent event, float x, float y)
-            {
-                System.out.println("Wcisniete" + Gdx.input.getX() + " " + Gdx.input.getY());
-            }
-        });
-         */
     }
 
     @Override

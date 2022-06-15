@@ -37,7 +37,7 @@ public class FireBall extends Projectile
 
         for(var target : inRange)
         {
-            target.updateHealth(36.0f);
+            target.updateHealth(20.0f);
         }
     }
 
