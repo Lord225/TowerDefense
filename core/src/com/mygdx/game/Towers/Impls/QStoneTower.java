@@ -1,4 +1,4 @@
-package com.mygdx.game.Towers;
+package com.mygdx.game.Towers.Impls;
 
 import Miscellaneous.Resources;
 import com.badlogic.gdx.Gdx;
@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.mygdx.game.Entites.Projectiles.Arrow;
 import com.mygdx.game.Entites.Enemy.Enemy;
 import com.mygdx.game.Entites.Entity;
+import com.mygdx.game.Towers.Building;
+
 /**
  * QuickStoneTower, faster tower (extends Building). It has the medium cost, lowest range and cooldown
  */

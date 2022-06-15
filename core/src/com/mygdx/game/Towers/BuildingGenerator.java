@@ -22,7 +22,7 @@ public class BuildingGenerator
     }
     public static Building get_Qstone_tower()
     {
-        return new com.mygdx.game.Towers.QStoneTower(80, 0.4f);
+        return new com.mygdx.game.Towers.Impls.QStoneTower(80, 0.4f);
     }
     public static Building get_fireball_tower()
     {
