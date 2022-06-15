@@ -1,9 +1,6 @@
-package com.mygdx.game.Enemy;
+package com.mygdx.game.Entites.Enemy;
 
 import Miscellaneous.Resources;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Ghost extends Enemy

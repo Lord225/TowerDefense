@@ -1,9 +1,7 @@
 package com.mygdx.game.Map;
 
 import com.badlogic.gdx.Gdx;
-import com.mygdx.game.Enemy.Ghost;
-
-import java.io.Serializable;
+import com.mygdx.game.Entites.Enemy.Ghost;
 
 public class WaveScript
 {

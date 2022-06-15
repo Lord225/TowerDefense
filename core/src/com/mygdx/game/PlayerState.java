@@ -1,18 +1,13 @@
 package com.mygdx.game;
 
 import Miscellaneous.Resources;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
-import com.mygdx.game.Enemy.Entity;
+import com.mygdx.game.Entites.Entity;
 import com.mygdx.game.Map.Map;
 import com.mygdx.game.Map.Route;
 import com.mygdx.game.Towers.BuildingGenerator;
 
 import java.io.Serializable;
-
-import static com.badlogic.gdx.math.MathUtils.floor;
 
 public class PlayerState implements Serializable
 {

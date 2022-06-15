@@ -1,31 +1,18 @@
 package com.mygdx.game.Towers;
 
-import Miscellaneous.Resources;
-import com.badlogic.gdx.graphics.Camera;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Enemy.Arrow;
-import com.mygdx.game.Enemy.Enemy;
-import com.mygdx.game.Enemy.Entity;
-import com.mygdx.game.Map.Map;
+import com.mygdx.game.Entites.Entity;
 import com.mygdx.game.Map.Tile;
 
 import java.awt.geom.Point2D;
-import java.util.Vector;
 
 public abstract class Building extends Entity
 {
-    float cost;
-    float range;
-    float shootingCooldown;
+    public float cost;
+    public float range;
+    public float shootingCooldown;
 
     protected float currentCooldown;
-
-    Sprite skin = Resources.getInstance().tower_sprite;
 
     public Tile tile = null;
 

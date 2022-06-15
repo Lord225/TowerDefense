@@ -6,17 +6,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.utils.JsonReader;
 import com.badlogic.gdx.utils.JsonValue;
-import com.mygdx.game.Enemy.Enemy;
-import com.mygdx.game.Enemy.Entity;
-import com.mygdx.game.Enemy.EntityMenager;
-import com.mygdx.game.Enemy.Ghost;
+import com.mygdx.game.Entites.Enemy.Enemy;
+import com.mygdx.game.Entites.Entity;
+import com.mygdx.game.Entites.EntityMenager;
 import com.mygdx.game.Towers.Building;
 
 import java.awt.geom.Point2D;
-import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Vector;
-import java.util.stream.Collectors;
 
 public class Map extends Sprite
 {

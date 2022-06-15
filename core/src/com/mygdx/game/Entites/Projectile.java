@@ -1,9 +1,9 @@
-package com.mygdx.game.Enemy;
+package com.mygdx.game.Entites;
 
 import Miscellaneous.Resources;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Map.Map;
+import com.mygdx.game.Entites.Enemy.Enemy;
 
 public abstract class Projectile extends Entity
 {

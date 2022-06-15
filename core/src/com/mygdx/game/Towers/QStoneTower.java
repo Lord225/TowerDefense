@@ -2,15 +2,10 @@ package com.mygdx.game.Towers;
 
 import Miscellaneous.Resources;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.mygdx.game.Enemy.Arrow;
-import com.mygdx.game.Enemy.Enemy;
-import com.mygdx.game.Enemy.Entity;
-import com.mygdx.game.Map.Map;
-
-import java.util.Vector;
-import java.awt.geom.Point2D;
+import com.mygdx.game.Entites.Projectiles.Arrow;
+import com.mygdx.game.Entites.Enemy.Enemy;
+import com.mygdx.game.Entites.Entity;
 
 public class QStoneTower extends Building {
     public QStoneTower(float range, float shootingCooldown){

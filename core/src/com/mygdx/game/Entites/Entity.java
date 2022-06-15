@@ -1,4 +1,4 @@
-package com.mygdx.game.Enemy;
+package com.mygdx.game.Entites;
 
 
 import com.badlogic.gdx.graphics.g2d.Batch;

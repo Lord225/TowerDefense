@@ -1,7 +1,10 @@
-package com.mygdx.game.Enemy;
+package com.mygdx.game.Entites.Projectiles;
 
 import Miscellaneous.Resources;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Entites.Enemy.Enemy;
+import com.mygdx.game.Entites.EntityMenager;
+import com.mygdx.game.Entites.Projectile;
 import com.mygdx.game.Map.Tile;
 
 public class FireBall extends Projectile

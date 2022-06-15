@@ -1,11 +1,9 @@
 package com.mygdx.game.Map;
 
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Enemy.Enemy;
-import com.mygdx.game.Enemy.Entity;
+import com.mygdx.game.Entites.Enemy.Enemy;
+import com.mygdx.game.Entites.Entity;
 
-import java.io.Serializable;
 import java.util.Vector;
 
 public class Route
