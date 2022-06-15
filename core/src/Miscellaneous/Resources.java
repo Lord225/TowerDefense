@@ -25,7 +25,7 @@ public class Resources
     public TextureRegion myQTextureRegion = new TextureRegion(towerQ_texture);
     public TextureRegionDrawable myQTextureDrawable = new TextureRegionDrawable(myQTextureRegion);
 
-    public Texture towerF_texture = new Texture("textures/entity/tower.png");
+    public Texture towerF_texture = new Texture("textures/entity/redtower.png");
     public TextureRegion myFTextureRegion = new TextureRegion(towerF_texture);
     public TextureRegionDrawable myFTextureDrawable = new TextureRegionDrawable(myFTextureRegion);
 
@@ -34,6 +34,7 @@ public class Resources
     public Sound arrow_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/hitsound.mp3"));
     public Sound death_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/deathsound.mp3"));
     public Sound castle_hit_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/castle_hit.mp3"));
+    public Sound fireball_sound= Gdx.audio.newSound(Gdx.files.internal("sound_effects/fireball.mp3"));
 
     public File bestScoreFile = new File("bestScore.dat");
     public File bestScoreFileXML = new File("bestScore.xml");

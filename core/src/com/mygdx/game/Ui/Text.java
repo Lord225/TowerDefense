@@ -1,15 +1,10 @@
 package com.mygdx.game.Ui;
 
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 public class Text extends UiTemplate {
     Label label;
@@ -32,9 +27,10 @@ public class Text extends UiTemplate {
     public void setText(String text){
         this.text=text;
         label.setText(this.text);
-        label.setPosition(position.x,position.y);
     }
-
+    public void setVisibility(boolean visibility){
+        label.setVisible(visibility);
+    }
     public String getText() {
         return text;
     }

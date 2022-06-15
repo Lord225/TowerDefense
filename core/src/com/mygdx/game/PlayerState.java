@@ -38,6 +38,8 @@ public class PlayerState implements Serializable
             }
         });
     }
+
+
     //after click event
     public void setTower(BuildingGenerator.BuildingType type)
     {

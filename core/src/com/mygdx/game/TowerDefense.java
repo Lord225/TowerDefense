@@ -13,10 +13,7 @@ import com.badlogic.gdx.graphics.TextureData;
 import com.badlogic.gdx.graphics.g2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.scenes.scene2d.Event;
-import com.badlogic.gdx.scenes.scene2d.EventListener;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.*;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
@@ -72,7 +69,6 @@ public class TowerDefense extends ApplicationAdapter
 
 	Text labelMoney;
 	Text labelBestScore;
-	Text labelScore;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -103,6 +99,7 @@ public class TowerDefense extends ApplicationAdapter
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		uiPort= new ExtendViewport(32*32 , 32*16);
 		camera.setToOrtho(false, 32*32, 32*16);
+		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
 		stage = new Stage(uiPort);
 
@@ -145,10 +142,29 @@ public class TowerDefense extends ApplicationAdapter
 			@Override
 			public void clicked(InputEvent event, float x, float y)
 			{
-				playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
-				System.out.println("Stonetower");
+					playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
+					System.out.println("Stonetower");
 			}
 		});
+		buttonStone.addListener(new ClickListener(){
+			@Override
+			public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
+			{
+					System.out.println("WSZEDLEM");
+					labelCostOfTower = new Text(new Vector2(32*2,32*19),"Koszt:80 Gold", Color.WHITE,stage);
+			}
+		});
+		buttonStone.addListener(new ClickListener(){
+			@Override
+			public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
+			{
+					System.out.println("WYSZEDLEM");
+					labelCostOfTower.setVisibility(false);
+			}
+		});
+
+		//QStone
+
 		buttonQStone.addListener(new ClickListener(){
 			@Override
 			public void clicked(InputEvent event, float x, float y)
