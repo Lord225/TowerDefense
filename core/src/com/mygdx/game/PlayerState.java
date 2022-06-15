@@ -14,9 +14,13 @@ import java.io.Serializable;
 
 import static com.badlogic.gdx.math.MathUtils.floor;
 
+/**
+ * This is the class which keeps player's statistics (health, gold, enemies defeated, map) and is being used for serialization
+ */
+
 public class PlayerState implements Serializable
 {
-    public int gold = 100; //100
+    public int gold = 100;
     public int health=10;
     public transient Map map;
     public int enemiesDefeated=0;
@@ -24,6 +28,10 @@ public class PlayerState implements Serializable
 
     public transient BuildingGenerator.BuildingType buildingTypeInHand = BuildingGenerator.BuildingType.NONE;
 
+    /**
+     * Constructor for PlayerState class
+     * @param map
+     */
     public PlayerState(Map map)
     {
         this.map = map;
@@ -40,13 +48,19 @@ public class PlayerState implements Serializable
     }
 
 
-    //after click event
+    /**
+     * Method used for setting tower in the hand, it takes BuildingGenerator type which was taken by the player as parameter
+     * @param type
+     */
     public void setTower(BuildingGenerator.BuildingType type)
     {
         this.buildingTypeInHand = type;
     }
 
-
+    /**
+     * Method used for placing picked building on selected tile, takes Vector2 position as a parameter
+     * @param blockPosition
+     */
     public void onPlaceBuilding(Vector2 blockPosition)
     {
         if(blockPosition.x < 0 || blockPosition.y < 0)
@@ -70,7 +84,7 @@ public class PlayerState implements Serializable
             building.is_alive = false;
         }
     }
-    //update golda
+
     public String getGoldMessage()
     {
         return String.format("Posiadasz %d gold'a", this.gold);
