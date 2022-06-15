@@ -72,6 +72,7 @@ public class TowerDefense extends ApplicationAdapter
 
 	Text labelMoney;
 	Text labelBestScore;
+	Text labelScore;
 
 	public Vector2 get_pointing_block(){
 		Vector3 vMouse = new Vector3();
@@ -90,24 +91,23 @@ public class TowerDefense extends ApplicationAdapter
 	@Override
 	public void create () {
 		mainTheme = Resources.getInstance().main_theme;
-
 		mainTheme.setLooping(true);
 		mainTheme.setVolume(0.075F);
 
 		camera = new OrthographicCamera();
 		map = new Map("map_layout.json");
-		batch = new SpriteBatch();
+		playerState = new PlayerState(map);
 
-		playerState=new PlayerState(map);
+		batch = new SpriteBatch();
 
 		gamePort = new ExtendViewport(32*32 , 32*16, camera);
 		uiPort= new ExtendViewport(32*32 , 32*16);
 		camera.setToOrtho(false, 32*32, 32*16);
-		//bestScore = new BestScore(map,10.0f(points),100(gold),"Player2");
 
-		stage=new Stage(uiPort);
+		stage = new Stage(uiPort);
 
 		labelMoney = new Text(new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE,stage);
+
 		buttonStone = new Button(
 				Resources.getInstance().tower_texture,
 				new TextureRegion(Resources.getInstance().myTextureRegion),
@@ -130,12 +130,15 @@ public class TowerDefense extends ApplicationAdapter
 				stage
 		);
 
+		labelScore = new Text(new Vector2(32*14,32*21),"Aktualny wynik: 0", Color.WHITE, stage);
+
 		bestScore = new BestScore();
 		bestScore.loadBest();
+
 		if(bestScore.getPlayerState() == null){
 			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: 0", Color.WHITE,stage);
 		}else{
-			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: "+bestScore.getPlayerState().getEnemiesDefeated(), Color.WHITE,stage);
+			labelBestScore = new Text(new Vector2(32*14,32*20),"Najlepszy wynik: " + bestScore.getPlayerState().getEnemiesDefeated(), Color.WHITE,stage);
 		}
 
 		buttonStone.addListener(new ClickListener(){
@@ -199,24 +202,14 @@ public class TowerDefense extends ApplicationAdapter
 
 		labelMoney.setText(playerState.getGoldMessage());
 		labelMoney.draw();
+
+		labelScore.setText(String.format("Aktualny wynik: %d", playerState.enemiesDefeated));
+
 		labelBestScore.draw();
+
 		if(playerState.isDead){
 			Gdx.app.exit();
 		}
-		/*
-		//button.draw();
-		button.addListener(new ClickListener(){
-			@Override
-			public void clicked(InputEvent event, float x, float y)
-			{
-				playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
-				//System.out.println("Ustawiam buden na stonetower");
-			}
-		});
-		labelMoney.setText(playerState.getGoldMessage());
-		labelMoney.draw();
-		 */
-
 	}
 
 

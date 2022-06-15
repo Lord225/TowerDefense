@@ -16,7 +16,7 @@ import static com.badlogic.gdx.math.MathUtils.floor;
 
 public class PlayerState implements Serializable
 {
-    public int gold = 100; //100
+    public int gold = 1000; //100
     public int health=10;
     public transient Map map;
     public int enemiesDefeated=0;

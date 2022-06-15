@@ -26,4 +26,15 @@ public class StoneTower extends Building {
         currentCooldown += Gdx.graphics.getDeltaTime();
     }
 
+    @Override
+    public void update_enemies(Entity[] enemies_in_range) {
+        if(currentCooldown >= shootingCooldown) {
+            var target = this.findClosestEnemy(enemies_in_range);
+
+            if (target instanceof Enemy enemy) {
+                Arrow.emmit(enemy, tile);
+                currentCooldown = 0;
+            }
+        }
+    }
 }

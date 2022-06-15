@@ -29,17 +29,8 @@ public abstract class Building extends Entity
 
     public Tile tile = null;
 
-    public void update_enemies(Entity[] enemies_in_range) //przeciwnicy w zasiegu (sprawdzenie)
-    {
-        if(currentCooldown >= shootingCooldown) {
-            var target = this.findClosestEnemy(enemies_in_range);
+    public abstract void update_enemies(Entity[] enemies_in_range);
 
-            if (target instanceof Enemy enemy) {
-                Arrow.emmit(enemy, tile);
-                currentCooldown = 0;
-            }
-        }
-    }
     public float getRange() {
         return this.range;
     }// range wiezyczki

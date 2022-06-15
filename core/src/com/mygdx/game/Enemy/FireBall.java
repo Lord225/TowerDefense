@@ -10,7 +10,7 @@ public class FireBall extends Projectile
 
     public FireBall(Enemy target, Vector2 start, float speed, float fireballrange) {
         super(target, start, speed);
-        this.skin = Resources.getInstance().arrow_sprite;
+        this.skin = Resources.getInstance().fireball_sprite;
     }
 
     public static FireBall emmit(Enemy target, Tile start, float fireballrange)
@@ -37,7 +37,7 @@ public class FireBall extends Projectile
 
         for(var target : inRange)
         {
-            target.updateHealth(36.0f);
+            target.updateHealth(20.0f);
         }
     }
 

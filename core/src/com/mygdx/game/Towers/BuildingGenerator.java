@@ -20,9 +20,8 @@ public class BuildingGenerator
     }
     public static Building get_fireball_tower()
     {
-        return new FireballTower(120, 3.0f, 50.0f);
+        return new FireballTower(120, 3.5f, 45.0f);
     }
-
 
     public static Building get_building(BuildingType type)
     {
