@@ -58,9 +58,6 @@ public abstract class Entity extends Sprite {
 
     public boolean isAlive() { return is_alive; }
 
-    public Sprite getEntitySkin(){
-        return this.skin;
-    }
     public Vector2 getEntityPos(){
         return new Vector2(this.position);
     }

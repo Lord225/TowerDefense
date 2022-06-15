@@ -35,7 +35,7 @@ public class Button extends UiTemplate{
         this.myTextureDrawable = trd;
         this.position=pos;
 
-        button = new ImageButton(myTextureDrawable); //Set the button up
+        button = new ImageButton(myTextureDrawable);
         button.setPosition(position.x,position.y);
         Gdx.input.setInputProcessor(stage);
         stage.addActor(button);

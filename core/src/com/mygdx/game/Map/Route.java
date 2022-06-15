@@ -44,16 +44,6 @@ public class Route
         route.add(new VectorWithLenght(x, y));
     }
 
-    public Vector2 get_end()
-    {
-        return route.lastElement();
-    }
-
-    public Vector2 get_start()
-    {
-        return route.firstElement();
-    }
-
     public float get_route_lenght()
     {
         return route.lastElement().distance;
