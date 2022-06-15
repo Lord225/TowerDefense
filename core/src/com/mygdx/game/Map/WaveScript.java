@@ -60,7 +60,7 @@ public class WaveScript
             new Wave(10, () -> new Ghost(120, 1.0f), 0.5f),
             new Wave(10, () -> new Ghost(120, 1.0f), 0.5f),
             new Wave(30, () -> new Ghost(80, 2.0f), 0.1f),
-            new Wave(5, () -> new Ghost(1000, 0.5f), 0.15f),
+            new Wave(5, () -> new Ghost(800, 0.5f), 0.15f),
             new Wave(5, () -> new Ghost(150, 1.0f), 0.3f),
             new Wave(5, () -> new Ghost(150, 1.0f), 0.3f),
             new Wave(20, () -> new Ghost(30, 0.02f), 0.02f),
