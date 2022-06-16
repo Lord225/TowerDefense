@@ -24,7 +24,7 @@ public class FireballTower extends Building
      * @param fireballrange range of fireballs
      */
     public FireballTower(float range, float shootingCooldown, float fireballrange){
-        this.cost = 300;
+        this.cost = 180;
         this.setRange(range);
         this.shootingCooldown = shootingCooldown;
         this.skin = new Sprite(Resources.getInstance().tower_sprite);

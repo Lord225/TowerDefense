@@ -20,7 +20,7 @@ public class BestScore implements Serializable {
             readSave = new ObjectInputStream(new FileInputStream(Resources.getInstance().bestScoreFile));
             this.playerState = (PlayerState) readSave.readObject();
         } catch (FileNotFoundException | ClassNotFoundException e) {
-            System.out.println("FileNotFoundError" + e);
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

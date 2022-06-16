@@ -21,6 +21,9 @@ import com.mygdx.game.Ui.Text;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class used for declaring our game's UI
+ */
 public class UITowerDef
 {
     Stage stage;
@@ -154,7 +157,7 @@ public class UITowerDef
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
             {
                 //System.out.println("Enter " + event.toString());
-                labelCostOfTower.setText("Koszt:300 Gold");
+                labelCostOfTower.setText("Koszt:180 Gold");
                 labelCostOfTower.setPos(new Vector2(32*6,32*19));
                 labelCostOfTower.setVisibility(true);
                 last = event.getType();
