@@ -22,7 +22,7 @@ public abstract class UiTemplate extends Actor {
      * Draws stage on screen after initializating object.
      */
     public void draw() {
-        stage.setDebugAll(true);
+        //stage.setDebugAll(true);
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
     }

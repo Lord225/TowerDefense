@@ -75,7 +75,7 @@ public class TowerDefense extends ApplicationAdapter
 
 		uiTowerDef = new UITowerDef();
 
-		uiTowerDef.create(uiPort, bestScore, playerState);
+		uiTowerDef.create(uiPort, bestScore, playerState,map);
 
 	}
 

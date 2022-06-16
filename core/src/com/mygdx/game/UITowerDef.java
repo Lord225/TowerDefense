@@ -13,8 +13,10 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.mygdx.game.Map.Map;
 import com.mygdx.game.Towers.BuildingGenerator;
 import com.mygdx.game.Ui.Button;
+import com.mygdx.game.Ui.HealthBar;
 import com.mygdx.game.Ui.Text;
 
 import java.util.concurrent.TimeUnit;
@@ -35,11 +37,15 @@ public class UITowerDef
 
     PlayerState playerState;
 
-    public void create(Viewport uiPort, BestScore bestScore, PlayerState playerState)
+    HealthBar healthBar;
+
+    public void create(Viewport uiPort, BestScore bestScore, PlayerState playerState, Map map)
     {
         this.playerState = playerState;
         stage = new Stage(uiPort);
 
+        healthBar=new HealthBar(100,20,stage,new Vector2(32*26,32*20));
+        map.route.set_on_arrival_callback(enemy -> healthBar.setValue(healthBar.getValue()-0.1F));
         labelMoney = new Text(new Vector2(32*20,32*20),playerState.getGoldMessage(), Color.WHITE,stage);
 
         buttonStone = new Button(
@@ -83,14 +89,14 @@ public class UITowerDef
             public void clicked(InputEvent event, float x, float y)
             {
                 playerState.setTower(BuildingGenerator.BuildingType.STONE_TOWER);
-                System.out.println("Clicked " + event.toString());
+                //System.out.println("Clicked " + event.toString());
 
                 last = event.getType();
             }
             @Override
             public void enter(InputEvent event, float x, float y, int pointer, Actor fromActor)
             {
-                System.out.println("Enter " + event.toString());
+                //System.out.println("Enter " + event.toString());
                 labelCostOfTower.setText("Koszt:80 Gold");
                 labelCostOfTower.setPos(new Vector2(32*2,32*19));
                 labelCostOfTower.setVisibility(true);
@@ -99,7 +105,7 @@ public class UITowerDef
             @Override
             public void exit(InputEvent event, float x, float y, int pointer, Actor toActor)
             {
-                System.out.println("Exit " + event.getType().toString());
+                //System.out.println("Exit " + event.getType().toString());
                 labelCostOfTower.setVisibility(false);
                 last = event.getType();
             }
@@ -176,6 +182,8 @@ public class UITowerDef
         buttonQStone.draw();
 
         buttonFireball.draw();
+
+        healthBar.draw();
 
         labelMoney.draw();
 
